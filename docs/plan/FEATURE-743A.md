@@ -1,6 +1,6 @@
 # FEATURE-743A — App icon & About dialog
 
-**Status:** IN PROGRESS
+**Status:** DONE — see `docs/done/FEATURE-743A-PHASE01.md`, `docs/done/FEATURE-743A-PHASE02.md`
 **Type:** FEATURE
 **Branch:** `feature/feature-743a-<phase>-<slug>` (one per phase)
 **Run:** vibe/2026-10-15-app-icon-about
@@ -86,7 +86,7 @@ Give the explorer the two product surfaces Enigma.GitClient has, in the same sty
 
 ## PHASE02 — About dialog
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-743A-PHASE02.md`
 **Branch:** `feature/feature-743a-phase02-about-dialog`
 
 ### Steps
