@@ -33,7 +33,7 @@ completion records live in `docs/done/<ID>.md`.
 | BUG-13FA     | Split panes overlap after re-split    | DONE   | docs/plan/BUG-13FA.md     |
 | FEATURE-74BC | Start with a single fresh pane        | DONE   | docs/plan/FEATURE-74BC.md |
 | FEATURE-6526 | Leader key & g-pane focus             | DONE   | docs/plan/FEATURE-6526.md |
-| FEATURE-5ACD | Trash confirmation & d/D keys         | TODO   | docs/plan/FEATURE-5ACD.md |
+| FEATURE-5ACD | Trash confirmation & d/D keys         | DONE   | docs/plan/FEATURE-5ACD.md |
 | FEATURE-773D | Quick-jump match highlight            | TODO   | docs/plan/FEATURE-773D.md |
 | FEATURE-5870 | Help dialog redesign                  | TODO   | docs/plan/FEATURE-5870.md |
 | FEATURE-2773 | Bookmarks                             | TODO   | docs/plan/FEATURE-2773.md |
