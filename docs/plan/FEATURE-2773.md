@@ -1,6 +1,6 @@
 # FEATURE-2773 — Bookmarks
 
-**Status:** TODO
+**Status:** IN PROGRESS
 **Type:** FEATURE
 **Branch:** `feature/feature-2773-<phase>-<slug>` (one per phase)
 **Run:** vibe/2026-10-15-leader-keys-bookmarks
@@ -26,7 +26,7 @@ Bookmark folders and jump to them fast:
 
 ## PHASE01 — Bookmark store & add key
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-2773-PHASE01.md`
 **Branch:** `feature/feature-2773-phase01-bookmark-store`
 
 ### Steps
