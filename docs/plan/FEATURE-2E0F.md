@@ -1,6 +1,6 @@
 # FEATURE-2E0F — Vim keyboard & command system
 
-**Status:** TODO
+**Status:** IN PROGRESS
 **Type:** FEATURE
 **Branch:** `feature/feature-2e0f-<phase>-<slug>` (one per phase)
 **Run:** vibe/2026-10-14-vim-split-file-explorer
@@ -82,7 +82,7 @@ declared in the catalog here and report "not available yet" until their item wir
 
 ## PHASE01 — Core keymap & ex-command parser
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-2E0F-PHASE01.md`
 **Branch:** `feature/feature-2e0f-phase01-keymap-engine`
 
 ### Steps
