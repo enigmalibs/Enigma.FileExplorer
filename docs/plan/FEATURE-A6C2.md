@@ -1,6 +1,6 @@
 # FEATURE-A6C2 — Context menus & drag-drop
 
-**Status:** IN PROGRESS
+**Status:** DONE
 **Type:** FEATURE
 **Branch:** `feature/feature-a6c2-<phase>-<slug>` (one per phase)
 **Run:** vibe/2026-10-14-vim-split-file-explorer
@@ -52,7 +52,7 @@ places, and to/from the operating system — with a KDE Plasma-style menu on dro
 
 ## PHASE02 — Drag & drop with drop menu
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-A6C2-PHASE02.md`
 **Branch:** `feature/feature-a6c2-phase02-drag-drop`
 
 ### Steps
