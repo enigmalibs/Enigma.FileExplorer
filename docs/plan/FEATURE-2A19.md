@@ -1,6 +1,6 @@
 # FEATURE-2A19 — View modes, sorting & hidden files
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-2A19.md`
 **Type:** FEATURE
 **Branch:** `feature/feature-2a19-view-modes`
 **Run:** vibe/2026-10-14-vim-split-file-explorer
