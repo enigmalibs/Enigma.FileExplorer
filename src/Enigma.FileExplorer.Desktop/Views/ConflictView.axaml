@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Enigma.FileExplorer.Desktop.ViewModels"
+             x:Class="Enigma.FileExplorer.Desktop.Views.ConflictView"
+             x:DataType="vm:ConflictViewModel"
+             MinWidth="420">
+  <StackPanel Spacing="10">
+    <TextBlock Text="{Binding Question}" TextWrapping="Wrap" />
+    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto">
+      <TextBlock Text="Existing" Margin="0,0,16,4" Foreground="{DynamicResource EnigmaForegroundSecondaryBrush}" />
+      <TextBlock Grid.Column="1" Text="{Binding ExistingText}" />
+      <TextBlock Grid.Row="1" Text="Incoming" Margin="0,0,16,0" Foreground="{DynamicResource EnigmaForegroundSecondaryBrush}" />
+      <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding IncomingText}" />
+    </Grid>
+    <CheckBox Content="Do this for every remaining conflict" IsChecked="{Binding ApplyToAll}" />
+    <TextBlock Text="Esc cancels the whole transfer." FontSize="12" Foreground="{DynamicResource EnigmaForegroundTertiaryBrush}" />
+  </StackPanel>
+</UserControl>

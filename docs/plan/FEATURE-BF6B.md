@@ -1,6 +1,6 @@
 # FEATURE-BF6B — File operations
 
-**Status:** IN PROGRESS
+**Status:** DONE
 **Type:** FEATURE
 **Branch:** `feature/feature-bf6b-<phase>-<slug>` (one per phase)
 **Run:** vibe/2026-10-14-vim-split-file-explorer
@@ -120,7 +120,7 @@ Desktop/          FileOperationCommands (handlers), IFileClipboard/FileClipboard
 
 ## PHASE04 — Clipboard, transfer queue & conflicts
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-BF6B-PHASE04.md`
 **Branch:** `feature/feature-bf6b-phase04-clipboard-transfers`
 
 ### Steps
