@@ -68,7 +68,7 @@ Desktop/          FileOperationCommands (handlers), IFileClipboard/FileClipboard
 
 ## PHASE02 — Copy/move transfer engine
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-BF6B-PHASE02.md`
 **Branch:** `feature/feature-bf6b-phase02-transfer-engine`
 
 ### Steps
