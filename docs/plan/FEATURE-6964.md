@@ -1,6 +1,6 @@
 # FEATURE-6964 — File search
 
-**Status:** TODO
+**Status:** IN PROGRESS
 **Type:** FEATURE
 **Branch:** `feature/feature-6964-<phase>-<slug>` (one per phase)
 **Run:** vibe/2026-10-14-vim-split-file-explorer
@@ -29,7 +29,7 @@ into the pane as a virtual listing that can be navigated and acted on like a dir
 
 ## PHASE01 — Core name & content search
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-6964-PHASE01.md`
 **Branch:** `feature/feature-6964-phase01-search-engine`
 
 ### Steps
