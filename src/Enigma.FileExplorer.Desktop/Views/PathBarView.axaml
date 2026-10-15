@@ -1,0 +1,104 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Enigma.FileExplorer.Desktop.ViewModels"
+             xmlns:ei="https://github.com/josueclement/Enigma.Icons"
+             xmlns:views="using:Enigma.FileExplorer.Desktop.Views"
+             x:Class="Enigma.FileExplorer.Desktop.Views.PathBarView"
+             x:DataType="vm:PaneViewModel">
+  <Border Background="{DynamicResource EnigmaSurfaceBrush}"
+          BorderBrush="{DynamicResource EnigmaBorderSubtleBrush}"
+          BorderThickness="0,0,0,1"
+          Padding="4,3">
+    <DockPanel>
+      <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" Spacing="2">
+        <Button Classes="crumb"
+                Command="{Binding GoBackCommand}"
+                ToolTip.Tip="Back (H, Alt+Left)"
+                AutomationProperties.Name="Back">
+          <ei:Icon Kind="ArrowLeft" Size="16" />
+        </Button>
+        <Button Classes="crumb"
+                Command="{Binding GoForwardCommand}"
+                ToolTip.Tip="Forward (L, Alt+Right)"
+                AutomationProperties.Name="Forward">
+          <ei:Icon Kind="ArrowRight" Size="16" />
+        </Button>
+        <Button Classes="crumb"
+                Command="{Binding GoParentCommand}"
+                ToolTip.Tip="Parent folder (h, Backspace)"
+                AutomationProperties.Name="Parent folder">
+          <ei:Icon Kind="ArrowUp" Size="16" />
+        </Button>
+        <Button Classes="crumb"
+                Command="{Binding RefreshCommand}"
+                ToolTip.Tip="Refresh (R, F5)"
+                AutomationProperties.Name="Refresh">
+          <ei:Icon Kind="ArrowClockwise" Size="16" />
+        </Button>
+      </StackPanel>
+
+      <!-- Split-group buttons for the mouse; the keyboard has the leader keys, which the tooltips name. -->
+      <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" Spacing="2" Margin="6,0,0,0">
+        <Button Classes="crumb"
+                Command="{Binding $parent[views:SplitHost].((vm:WorkspaceViewModel)DataContext).SplitColumnsCommand, FallbackValue={x:Null}}"
+                CommandParameter="{Binding}"
+                ToolTip.Tip="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).SplitColumnsTip, FallbackValue='Split side by side'}"
+                AutomationProperties.Name="Split side by side">
+          <ei:Icon Kind="Columns" Size="16" />
+        </Button>
+        <Button Classes="crumb"
+                Command="{Binding $parent[views:SplitHost].((vm:WorkspaceViewModel)DataContext).SplitRowsCommand, FallbackValue={x:Null}}"
+                CommandParameter="{Binding}"
+                ToolTip.Tip="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).SplitRowsTip, FallbackValue='Split top and bottom'}"
+                AutomationProperties.Name="Split top and bottom">
+          <ei:Icon Kind="Rows" Size="16" />
+        </Button>
+        <Button Classes="crumb"
+                IsVisible="{Binding IsFramed}"
+                Command="{Binding $parent[views:SplitHost].((vm:WorkspaceViewModel)DataContext).CloseCommand, FallbackValue={x:Null}}"
+                CommandParameter="{Binding}"
+                ToolTip.Tip="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).ClosePaneTip, FallbackValue='Close this pane'}"
+                AutomationProperties.Name="Close pane">
+          <ei:Icon Kind="X" Size="16" />
+        </Button>
+      </StackPanel>
+
+      <Panel Margin="6,0,0,0">
+        <!-- Breadcrumb: a click on a segment navigates, a click on the empty area edits the path. -->
+        <Border x:Name="CrumbArea"
+                Background="Transparent"
+                IsVisible="{Binding !IsEditingPath}"
+                ToolTip.Tip="Click an empty area to type a path (Ctrl+L)">
+          <ScrollViewer x:Name="CrumbScroller"
+                        HorizontalScrollBarVisibility="Hidden"
+                        VerticalScrollBarVisibility="Disabled">
+            <ItemsControl ItemsSource="{Binding Breadcrumbs}">
+              <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                  <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+              </ItemsControl.ItemsPanel>
+              <ItemsControl.ItemTemplate>
+                <DataTemplate x:DataType="vm:PathSegment">
+                  <StackPanel Orientation="Horizontal">
+                    <Button Classes="crumb"
+                            Content="{Binding Name}"
+                            Command="{Binding $parent[UserControl].((vm:PaneViewModel)DataContext).NavigateToSegmentCommand}"
+                            CommandParameter="{Binding}" />
+                    <TextBlock Classes="crumbSeparator" Text="›" />
+                  </StackPanel>
+                </DataTemplate>
+              </ItemsControl.ItemTemplate>
+            </ItemsControl>
+          </ScrollViewer>
+        </Border>
+
+        <TextBox x:Name="PathBox"
+                 IsVisible="{Binding IsEditingPath}"
+                 Text="{Binding EditPathText}"
+                 VerticalContentAlignment="Center"
+                 AutomationProperties.Name="Path" />
+      </Panel>
+    </DockPanel>
+  </Border>
+</UserControl>

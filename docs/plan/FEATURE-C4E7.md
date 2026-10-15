@@ -110,7 +110,7 @@ src/Enigma.FileExplorer.Desktop/
 
 ## PHASE03 — Pane browsing & navigation UI
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-C4E7-PHASE03.md`
 **Branch:** `feature/feature-c4e7-phase03-pane-browsing`
 
 ### Steps
