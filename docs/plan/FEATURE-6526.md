@@ -1,6 +1,6 @@
 # FEATURE-6526 — Leader key & g-pane focus
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-6526.md`
 **Type:** FEATURE
 **Branch:** `feature/feature-6526-leader-key`
 **Run:** vibe/2026-10-15-leader-keys-bookmarks
