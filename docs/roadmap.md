@@ -39,3 +39,6 @@ completion records live in `docs/done/<ID>.md`.
 | FEATURE-2773 | Bookmarks                             | DONE   | docs/plan/FEATURE-2773.md |
 | - PHASE01    | Bookmark store & add key              | DONE   | (in FEATURE-2773.md)      |
 | - PHASE02    | Bookmarks dialog                      | DONE   | (in FEATURE-2773.md)      |
+| FEATURE-743A | App icon & About dialog               | TODO   | docs/plan/FEATURE-743A.md |
+| - PHASE01    | Application icon                      | TODO   | (in FEATURE-743A.md)      |
+| - PHASE02    | About dialog                          | TODO   | (in FEATURE-743A.md)      |
