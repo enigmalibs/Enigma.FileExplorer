@@ -17,7 +17,7 @@ completion records live in `docs/done/<ID>.md`.
 | FEATURE-95D6 | Split groups                          | DONE   | docs/plan/FEATURE-95D6.md |
 | - PHASE01    | Core split-tree model                 | DONE   | (in FEATURE-95D6.md)      |
 | - PHASE02    | Split UI & window commands            | DONE   | (in FEATURE-95D6.md)      |
-| FEATURE-2A19 | View modes, sorting & hidden files    | TODO   | docs/plan/FEATURE-2A19.md |
+| FEATURE-2A19 | View modes, sorting & hidden files    | DONE   | docs/plan/FEATURE-2A19.md |
 | FEATURE-BF6B | File operations                       | TODO   | docs/plan/FEATURE-BF6B.md |
 | - PHASE01    | Create, rename, trash & delete engine | TODO   | (in FEATURE-BF6B.md)      |
 | - PHASE02    | Copy/move transfer engine             | TODO   | (in FEATURE-BF6B.md)      |
