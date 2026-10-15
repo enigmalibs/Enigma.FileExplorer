@@ -1,6 +1,6 @@
 # FEATURE-2773 — Bookmarks
 
-**Status:** IN PROGRESS
+**Status:** DONE — see `docs/done/FEATURE-2773-PHASE01.md`, `docs/done/FEATURE-2773-PHASE02.md`
 **Type:** FEATURE
 **Branch:** `feature/feature-2773-<phase>-<slug>` (one per phase)
 **Run:** vibe/2026-10-15-leader-keys-bookmarks
@@ -57,7 +57,7 @@ Bookmark folders and jump to them fast:
 
 ## PHASE02 — Bookmarks dialog
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-2773-PHASE02.md`
 **Branch:** `feature/feature-2773-phase02-bookmarks-dialog`
 
 ### Steps

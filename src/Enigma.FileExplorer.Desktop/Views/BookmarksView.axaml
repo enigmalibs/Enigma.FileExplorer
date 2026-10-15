@@ -1,0 +1,39 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Enigma.FileExplorer.Desktop.ViewModels"
+             xmlns:services="using:Enigma.FileExplorer.Desktop.Services"
+             x:Class="Enigma.FileExplorer.Desktop.Views.BookmarksView"
+             x:DataType="vm:BookmarksViewModel"
+             Focusable="True"
+             Width="600">
+  <DockPanel>
+    <TextBlock DockPanel.Dock="Bottom"
+               Classes="bookmarksHint"
+               Text="j/k move · Enter opens · a adds this folder · d removes · q closes" />
+
+    <Panel>
+      <!-- The list takes the keyboard (see the code-behind), so it must be focusable, which a ListBox is not by
+           default; a double-click opens too. -->
+      <ListBox x:Name="List"
+               Classes="bookmarks"
+               Focusable="True"
+               ItemsSource="{Binding Items}"
+               SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+               MaxHeight="400"
+               IsVisible="{Binding !IsEmpty}">
+        <ListBox.ItemTemplate>
+          <DataTemplate x:DataType="services:Bookmark">
+            <StackPanel Spacing="1" Margin="0,2">
+              <TextBlock Classes="bookmarkName" Text="{Binding Name}" />
+              <TextBlock Classes="bookmarkPath" Text="{Binding Path}" />
+            </StackPanel>
+          </DataTemplate>
+        </ListBox.ItemTemplate>
+      </ListBox>
+
+      <TextBlock Classes="placeholder"
+                 IsVisible="{Binding IsEmpty}"
+                 Text="No bookmarks yet. Press a to bookmark the current folder, or B in the listing." />
+    </Panel>
+  </DockPanel>
+</UserControl>
