@@ -1,6 +1,6 @@
 # FEATURE-C4E7 — Foundation & directory browsing
 
-**Status:** IN PROGRESS
+**Status:** DONE
 **Type:** FEATURE
 **Branch:** `feature/feature-c4e7-<phase>-<slug>` (one per phase)
 **Run:** vibe/2026-10-14-vim-split-file-explorer
@@ -145,7 +145,7 @@ src/Enigma.FileExplorer.Desktop/
 
 ## PHASE04 — Places, file icons & auto-refresh
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-C4E7-PHASE04.md`
 **Branch:** `feature/feature-c4e7-phase04-places-icons-refresh`
 
 ### Steps
