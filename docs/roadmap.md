@@ -29,4 +29,4 @@ completion records live in `docs/done/<ID>.md`.
 | FEATURE-A6C2 | Context menus & drag-drop             | DONE   | docs/plan/FEATURE-A6C2.md |
 | - PHASE01    | Context menus                         | DONE   | (in FEATURE-A6C2.md)      |
 | - PHASE02    | Drag & drop with drop menu            | DONE   | (in FEATURE-A6C2.md)      |
-| FEATURE-CA94 | Session persistence & settings        | TODO   | docs/plan/FEATURE-CA94.md |
+| FEATURE-CA94 | Session persistence & settings        | DONE   | docs/plan/FEATURE-CA94.md |

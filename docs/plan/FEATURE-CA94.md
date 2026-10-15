@@ -1,6 +1,6 @@
 # FEATURE-CA94 — Session persistence & settings
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-CA94.md`
 **Type:** FEATURE
 **Branch:** `feature/feature-ca94-session-settings`
 **Run:** vibe/2026-10-14-vim-split-file-explorer
