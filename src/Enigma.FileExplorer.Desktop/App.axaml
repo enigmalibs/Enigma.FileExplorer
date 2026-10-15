@@ -1,0 +1,27 @@
+<!--
+  Dark is the starting variant, not "Default". Enigma.Avalonia.Desktop's dictionary defines Dark and
+  Light theme dictionaries only, so on a host whose platform theme cannot be resolved "Default" leaves
+  every Enigma* brush unresolved and the window paints almost nothing.
+-->
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="Enigma.FileExplorer.Desktop.App"
+             RequestedThemeVariant="Dark">
+  <Application.Styles>
+    <FluentTheme />
+    <StyleInclude Source="avares://Enigma.FileExplorer.Desktop/Themes/Styles.axaml" />
+  </Application.Styles>
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <!-- Enigma.Avalonia.Desktop is a ResourceDictionary, so it must be a ResourceInclude here and
+             not a StyleInclude. -->
+        <ResourceInclude Source="avares://Enigma.Avalonia.Desktop/Themes/Fluent.axaml" />
+      </ResourceDictionary.MergedDictionaries>
+
+      <!-- One monospace stack for pending keys and the command line, listing a face that exists on Linux
+           and one that exists on Windows before falling back to the generic family. -->
+      <FontFamily x:Key="MonospaceFontFamily">Cascadia Mono, JetBrains Mono, DejaVu Sans Mono, Consolas, Menlo, monospace</FontFamily>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>
