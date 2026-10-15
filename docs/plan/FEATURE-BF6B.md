@@ -95,7 +95,7 @@ Desktop/          FileOperationCommands (handlers), IFileClipboard/FileClipboard
 
 ## PHASE03 — Create, rename & delete UI
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-BF6B-PHASE03.md`
 **Branch:** `feature/feature-bf6b-phase03-create-rename-delete-ui`
 
 ### Steps
