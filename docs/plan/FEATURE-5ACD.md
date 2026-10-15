@@ -1,6 +1,6 @@
 # FEATURE-5ACD — Trash confirmation & d/D keys
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-5ACD.md`
 **Type:** FEATURE
 **Branch:** `feature/feature-5acd-delete-keys`
 **Run:** vibe/2026-10-15-leader-keys-bookmarks
