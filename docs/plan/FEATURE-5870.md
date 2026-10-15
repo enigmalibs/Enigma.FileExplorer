@@ -1,6 +1,6 @@
 # FEATURE-5870 — Help dialog redesign
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-5870.md`
 **Type:** FEATURE
 **Branch:** `feature/feature-5870-help-dialog`
 **Run:** vibe/2026-10-15-leader-keys-bookmarks
