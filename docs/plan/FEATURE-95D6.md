@@ -1,6 +1,6 @@
 # FEATURE-95D6 — Split groups
 
-**Status:** IN PROGRESS
+**Status:** DONE
 **Type:** FEATURE
 **Branch:** `feature/feature-95d6-<phase>-<slug>` (one per phase)
 **Run:** vibe/2026-10-14-vim-split-file-explorer
@@ -61,7 +61,7 @@ Desktop/       WorkspaceViewModel (tree of SplitViewModel / PaneViewModel, activ
 
 ## PHASE02 — Split UI & window commands
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-95D6-PHASE02.md`
 **Branch:** `feature/feature-95d6-phase02-split-ui`
 
 ### Steps
