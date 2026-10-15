@@ -1,0 +1,310 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Design.PreviewWith>
+    <Border Padding="20" />
+  </Design.PreviewWith>
+
+  <!-- Pane rows. The cursor is the strong full-row highlight (as in ranger and vifm); marks are an
+       accent bar plus a heavier name, so a marked row under the cursor still reads as both. -->
+  <Style Selector="Border.row">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Height" Value="26" />
+    <Setter Property="CornerRadius" Value="4" />
+    <Setter Property="Margin" Value="4,0" />
+  </Style>
+  <Style Selector="Border.row:pointerover">
+    <Setter Property="Background" Value="{DynamicResource EnigmaHoverBrush}" />
+  </Style>
+  <Style Selector="Border.row.cursor">
+    <Setter Property="Background" Value="{DynamicResource EnigmaSelectionBrush}" />
+  </Style>
+  <Style Selector="Border.row.hiddenEntry">
+    <Setter Property="Opacity" Value="0.6" />
+  </Style>
+  <Style Selector="Border.row.cut, Border.tile.cut">
+    <Setter Property="Opacity" Value="0.45" />
+  </Style>
+  <Style Selector="Border.row Border.markBar">
+    <Setter Property="Width" Value="3" />
+    <Setter Property="CornerRadius" Value="2" />
+    <Setter Property="Margin" Value="0,4" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="Background" Value="{DynamicResource EnigmaAccentBrush}" />
+    <Setter Property="IsVisible" Value="False" />
+  </Style>
+  <Style Selector="Border.row.marked Border.markBar">
+    <Setter Property="IsVisible" Value="True" />
+  </Style>
+  <Style Selector="Border.row.marked TextBlock.name">
+    <Setter Property="FontWeight" Value="SemiBold" />
+  </Style>
+  <Style Selector="Border.row TextBlock">
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+    <Setter Property="Margin" Value="0,0,12,0" />
+  </Style>
+  <Style Selector="Border.row TextBlock.secondary">
+    <Setter Property="Foreground" Value="{DynamicResource EnigmaForegroundSecondaryBrush}" />
+  </Style>
+  <Style Selector="Border.row TextBlock.size">
+    <Setter Property="HorizontalAlignment" Value="Right" />
+  </Style>
+
+  <!-- Quick-jump matches (vim's hlsearch): the name sits on a warning-tinted band, which reads over the
+       cursor and the marks alike. The band hugs the text, so its width shows the name, not the column. -->
+  <Style Selector="Border.row.match TextBlock.name">
+    <Setter Property="Background" Value="{DynamicResource EnigmaWarningBackgroundBrush}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="Padding" Value="3,1" />
+  </Style>
+  <Style Selector="Border.tile.match TextBlock.tileName">
+    <Setter Property="Background" Value="{DynamicResource EnigmaWarningBackgroundBrush}" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="Padding" Value="3,1" />
+  </Style>
+
+  <!-- Split groups: the active pane's frame, the dimmed cursor of the others, the splitters. -->
+  <Style Selector="Border.paneFrame">
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+  </Style>
+  <Style Selector="Border.paneFrame.framed">
+    <Setter Property="BorderBrush" Value="{DynamicResource EnigmaAccentBrush}" />
+  </Style>
+  <Style Selector="Border.paneFrame.inactive Border.row.cursor">
+    <Setter Property="Background" Value="{DynamicResource EnigmaHoverBrush}" />
+  </Style>
+  <Style Selector="GridSplitter.paneSplitter">
+    <Setter Property="Background" Value="{DynamicResource EnigmaBorderSubtleBrush}" />
+    <Setter Property="MinWidth" Value="3" />
+    <Setter Property="MinHeight" Value="3" />
+  </Style>
+
+  <!-- Tiles of the icon views: the cursor fills the tile, a mark draws an accent border. -->
+  <Style Selector="Border.tile">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="2" />
+    <Setter Property="CornerRadius" Value="6" />
+    <Setter Property="Margin" Value="4" />
+    <Setter Property="Padding" Value="4,2" />
+  </Style>
+  <Style Selector="Border.tile:pointerover">
+    <Setter Property="Background" Value="{DynamicResource EnigmaHoverBrush}" />
+  </Style>
+  <Style Selector="Border.tile.cursor">
+    <Setter Property="Background" Value="{DynamicResource EnigmaSelectionBrush}" />
+  </Style>
+  <Style Selector="Border.tile.marked">
+    <Setter Property="BorderBrush" Value="{DynamicResource EnigmaAccentBrush}" />
+  </Style>
+  <Style Selector="Border.tile.hiddenEntry">
+    <Setter Property="Opacity" Value="0.6" />
+  </Style>
+  <Style Selector="Border.paneFrame.inactive Border.tile.cursor">
+    <Setter Property="Background" Value="{DynamicResource EnigmaHoverBrush}" />
+  </Style>
+  <Style Selector="TextBlock.tileName">
+    <Setter Property="TextAlignment" Value="Center" />
+    <Setter Property="TextWrapping" Value="Wrap" />
+    <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+    <Setter Property="MaxLines" Value="2" />
+    <Setter Property="FontSize" Value="12" />
+  </Style>
+
+  <!-- Search results: the header line and the matching-line column. -->
+  <Style Selector="Border.resultsHeader">
+    <Setter Property="Background" Value="{DynamicResource EnigmaSurfaceBrush}" />
+    <Setter Property="Padding" Value="12,5" />
+  </Style>
+  <Style Selector="Border.resultsHeader TextBlock">
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+  <Style Selector="Border.row TextBlock.lineText">
+    <Setter Property="FontFamily" Value="{DynamicResource MonospaceFontFamily}" />
+    <Setter Property="FontSize" Value="12" />
+  </Style>
+
+  <!-- The details view's column header. -->
+  <Style Selector="Grid.columnHeader">
+    <Setter Property="Height" Value="28" />
+    <Setter Property="Margin" Value="4,0" />
+  </Style>
+  <Style Selector="Button.columnHeader">
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="Foreground" Value="{DynamicResource EnigmaForegroundSecondaryBrush}" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="HorizontalContentAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+  </Style>
+  <Style Selector="Button.columnHeader.size">
+    <Setter Property="HorizontalContentAlignment" Value="Right" />
+    <Setter Property="Padding" Value="0,0,12,0" />
+  </Style>
+
+  <!-- The places sidebar. Its buttons never take the keyboard away from the listing. -->
+  <Style Selector="TextBlock.sectionHeader">
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+    <Setter Property="Margin" Value="8,0,8,4" />
+    <Setter Property="Foreground" Value="{DynamicResource EnigmaForegroundTertiaryBrush}" />
+  </Style>
+  <Style Selector="Button.place">
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="HorizontalContentAlignment" Value="Left" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="8,5" />
+    <Setter Property="Margin" Value="0,1" />
+  </Style>
+  <Style Selector="Button.place.current">
+    <Setter Property="Background" Value="{DynamicResource EnigmaSelectionBrush}" />
+  </Style>
+
+  <!-- The path bar's breadcrumb. -->
+  <Style Selector="Button.crumb">
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="6,2" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+  <Style Selector="Button.crumb:disabled /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="Transparent" />
+  </Style>
+  <Style Selector="TextBlock.crumbSeparator">
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Foreground" Value="{DynamicResource EnigmaForegroundTertiaryBrush}" />
+    <Setter Property="Margin" Value="0" />
+  </Style>
+
+  <!-- Drag and drop: the folder, place or pane a drop would land in. -->
+  <Style Selector="Border.row.dropTarget, Border.tile.dropTarget">
+    <Setter Property="Background" Value="{DynamicResource EnigmaHoverBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource EnigmaAccentBrush}" />
+  </Style>
+  <Style Selector="Border.row.dropTarget">
+    <Setter Property="BorderThickness" Value="1" />
+  </Style>
+  <Style Selector="Border.paneFrame.dropTarget">
+    <Setter Property="Background" Value="{DynamicResource EnigmaHoverBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource EnigmaAccentBrush}" />
+  </Style>
+  <Style Selector="Button.place.dropTarget">
+    <Setter Property="BorderBrush" Value="{DynamicResource EnigmaAccentBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+  </Style>
+
+  <!-- Context menus: the key that does the same, in its own column after the titles. -->
+  <Style Selector="MenuItem TextBlock.menuGesture">
+    <Setter Property="Margin" Value="32,0,0,0" />
+    <Setter Property="Opacity" Value="0.6" />
+  </Style>
+
+  <!-- The placeholder shown instead of an empty or unreadable listing. -->
+  <Style Selector="TextBlock.placeholder">
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="TextWrapping" Value="Wrap" />
+    <Setter Property="Margin" Value="24" />
+    <Setter Property="Foreground" Value="{DynamicResource EnigmaForegroundSecondaryBrush}" />
+  </Style>
+
+  <!-- The command line. -->
+  <Style Selector="Border.commandLine">
+    <Setter Property="Background" Value="{DynamicResource EnigmaBackgroundBrush}" />
+    <Setter Property="Padding" Value="10,2" />
+  </Style>
+  <Style Selector="TextBlock.commandPrefix">
+    <Setter Property="FontFamily" Value="{DynamicResource MonospaceFontFamily}" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+  <Style Selector="TextBox.commandInput">
+    <Setter Property="FontFamily" Value="{DynamicResource MonospaceFontFamily}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="2,4" />
+    <Setter Property="MinHeight" Value="0" />
+  </Style>
+  <Style Selector="TextBox.commandInput:focus /template/ Border#PART_BorderElement">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+  </Style>
+  <Style Selector="TextBox.commandInput:pointerover /template/ Border#PART_BorderElement">
+    <Setter Property="Background" Value="Transparent" />
+  </Style>
+  <Style Selector="TextBox.commandInput.noMatch">
+    <Setter Property="Foreground" Value="{DynamicResource EnigmaErrorBrush}" />
+  </Style>
+
+  <!-- The key-binding help: a card per category, a line per command. -->
+  <Style Selector="Grid.helpRow">
+    <Setter Property="Margin" Value="0,3" />
+  </Style>
+  <Style Selector="TextBlock.helpKeys">
+    <Setter Property="FontFamily" Value="{DynamicResource MonospaceFontFamily}" />
+    <Setter Property="TextWrapping" Value="Wrap" />
+    <Setter Property="Margin" Value="0,0,12,0" />
+  </Style>
+  <Style Selector="TextBlock.helpEx">
+    <Setter Property="FontFamily" Value="{DynamicResource MonospaceFontFamily}" />
+    <Setter Property="Foreground" Value="{DynamicResource EnigmaForegroundSecondaryBrush}" />
+  </Style>
+
+  <!-- The bookmarks dialog: the name over its folder, and the keys below the list. -->
+  <Style Selector="TextBlock.bookmarkName">
+    <Setter Property="FontWeight" Value="SemiBold" />
+  </Style>
+  <Style Selector="TextBlock.bookmarkPath">
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="Foreground" Value="{DynamicResource EnigmaForegroundSecondaryBrush}" />
+    <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+  </Style>
+  <Style Selector="TextBlock.bookmarksHint">
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="Margin" Value="0,10,0,0" />
+    <Setter Property="Foreground" Value="{DynamicResource EnigmaForegroundTertiaryBrush}" />
+  </Style>
+
+  <!-- The status bar. -->
+  <Style Selector="Border.statusBar">
+    <Setter Property="Background" Value="{DynamicResource EnigmaSurfaceBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource EnigmaBorderSubtleBrush}" />
+    <Setter Property="BorderThickness" Value="0,1,0,0" />
+    <Setter Property="Padding" Value="10,3" />
+  </Style>
+  <Style Selector="Border.statusBar TextBlock">
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+  <Style Selector="Border.modeBadge">
+    <Setter Property="Background" Value="{DynamicResource EnigmaSurfaceHighBrush}" />
+    <Setter Property="CornerRadius" Value="3" />
+    <Setter Property="Padding" Value="6,0" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+  <Style Selector="Border.modeBadge TextBlock">
+    <Setter Property="FontSize" Value="11" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+  </Style>
+  <Style Selector="Border.modeBadge.visual">
+    <Setter Property="Background" Value="{DynamicResource EnigmaAccentBrush}" />
+  </Style>
+  <Style Selector="Border.modeBadge.visual TextBlock">
+    <Setter Property="Foreground" Value="White" />
+  </Style>
+  <Style Selector="Border.statusBar TextBlock.pendingKeys">
+    <Setter Property="FontFamily" Value="{DynamicResource MonospaceFontFamily}" />
+    <Setter Property="Margin" Value="12,0,0,0" />
+  </Style>
+  <Style Selector="Border.statusBar TextBlock.error">
+    <Setter Property="Foreground" Value="{DynamicResource EnigmaErrorBrush}" />
+  </Style>
+</Styles>

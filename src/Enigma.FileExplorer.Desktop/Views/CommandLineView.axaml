@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Enigma.FileExplorer.Desktop.ViewModels"
+             x:Class="Enigma.FileExplorer.Desktop.Views.CommandLineView"
+             x:DataType="vm:CommandLineViewModel"
+             IsVisible="{Binding IsOpen}">
+  <Border Classes="commandLine">
+    <DockPanel>
+      <TextBlock DockPanel.Dock="Left" Classes="commandPrefix" Text="{Binding Prefix}" />
+      <TextBox x:Name="Input"
+               Classes="commandInput"
+               Classes.noMatch="{Binding HasNoMatch}"
+               Text="{Binding Text}"
+               AutomationProperties.Name="Command line" />
+    </DockPanel>
+  </Border>
+</UserControl>

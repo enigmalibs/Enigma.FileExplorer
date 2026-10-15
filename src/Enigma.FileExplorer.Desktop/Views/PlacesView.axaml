@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Enigma.FileExplorer.Desktop.ViewModels"
+             xmlns:ei="https://github.com/josueclement/Enigma.Icons"
+             x:Class="Enigma.FileExplorer.Desktop.Views.PlacesView"
+             x:DataType="vm:PlacesViewModel">
+  <UserControl.DataTemplates>
+    <DataTemplate x:DataType="vm:PlaceViewModel">
+      <Button Classes="place"
+              Classes.current="{Binding IsCurrent}"
+              Classes.dropTarget="{Binding IsDropTarget}"
+              Command="{Binding $parent[UserControl].((vm:PlacesViewModel)DataContext).OpenCommand}"
+              CommandParameter="{Binding}"
+              ToolTip.Tip="{Binding Path}">
+        <StackPanel Orientation="Horizontal" Spacing="8">
+          <ei:Icon Kind="{Binding Icon}" Size="16" VerticalAlignment="Center" />
+          <TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" />
+        </StackPanel>
+      </Button>
+    </DataTemplate>
+  </UserControl.DataTemplates>
+
+  <Border Background="{DynamicResource EnigmaSurfaceBrush}">
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled">
+      <StackPanel Margin="6,8">
+        <TextBlock Classes="sectionHeader" Text="Places" />
+        <ItemsControl ItemsSource="{Binding Folders}" />
+        <TextBlock Classes="sectionHeader" Text="Devices" Margin="8,14,8,4" />
+        <ItemsControl ItemsSource="{Binding Devices}" />
+      </StackPanel>
+    </ScrollViewer>
+  </Border>
+</UserControl>

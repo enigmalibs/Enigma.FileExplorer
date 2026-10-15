@@ -1,0 +1,220 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Enigma.FileExplorer.Desktop.ViewModels"
+             xmlns:views="using:Enigma.FileExplorer.Desktop.Views"
+             xmlns:fs="using:Enigma.FileExplorer.Core.FileSystem"
+             xmlns:ei="https://github.com/josueclement/Enigma.Icons"
+             x:Class="Enigma.FileExplorer.Desktop.Views.PaneView"
+             x:DataType="vm:PaneViewModel"
+             Focusable="True"
+             Background="Transparent">
+  <!-- The frame marks the active pane once there is more than one; inactive panes dim their cursor. -->
+  <Border Classes="paneFrame"
+          Classes.framed="{Binding IsFramed}"
+          Classes.inactive="{Binding !IsActive}"
+          Classes.dropTarget="{Binding IsDropTarget}">
+    <DockPanel>
+      <views:PathBarView x:Name="PathBar" DockPanel.Dock="Top" />
+
+      <ProgressBar DockPanel.Dock="Top"
+                   IsIndeterminate="True"
+                   IsVisible="{Binding IsLoading}"
+                   Height="2"
+                   MinHeight="2" />
+
+      <!-- Search results: what was searched, how many hits, and whether it is still searching. -->
+      <Border DockPanel.Dock="Top" Classes="resultsHeader" IsVisible="{Binding IsSearchResults}">
+        <DockPanel>
+          <ProgressBar DockPanel.Dock="Right"
+                       IsIndeterminate="True"
+                       IsVisible="{Binding IsSearching}"
+                       Width="80"
+                       MinWidth="80"
+                       VerticalAlignment="Center" />
+          <TextBlock Text="{Binding SearchTitle}" TextTrimming="CharacterEllipsis" />
+        </DockPanel>
+      </Border>
+      <Grid DockPanel.Dock="Top"
+            Classes="columnHeader"
+            ColumnDefinitions="28,*,200,56,2*"
+            IsVisible="{Binding IsSearchResults}">
+        <TextBlock Grid.Column="1" Text="Name" />
+        <TextBlock Grid.Column="2" Text="Folder" />
+        <TextBlock Grid.Column="3" Text="Line" />
+        <TextBlock Grid.Column="4" Text="Text" />
+      </Grid>
+
+      <!-- Column header of the details view; a click sorts by the column, a second click reverses. The
+           widths match the row template's so the columns line up. -->
+      <Grid DockPanel.Dock="Top"
+            Classes="columnHeader"
+            ColumnDefinitions="28,*,150,120,80"
+            IsVisible="{Binding ShowsDetailsList}">
+        <Button Grid.Column="1" Classes="columnHeader" Content="{Binding NameHeader}"
+                Command="{Binding SortByCommand}" CommandParameter="{x:Static fs:SortKey.Name}"
+                ToolTip.Tip="Sort by name (on)" />
+        <Button Grid.Column="2" Classes="columnHeader" Content="{Binding ModifiedHeader}"
+                Command="{Binding SortByCommand}" CommandParameter="{x:Static fs:SortKey.Modified}"
+                ToolTip.Tip="Sort by date modified (om)" />
+        <Button Grid.Column="3" Classes="columnHeader" Content="{Binding TypeHeader}"
+                Command="{Binding SortByCommand}" CommandParameter="{x:Static fs:SortKey.Type}"
+                ToolTip.Tip="Sort by type (ot)" />
+        <Button Grid.Column="4" Classes="columnHeader size" Content="{Binding SizeHeader}"
+                Command="{Binding SortByCommand}" CommandParameter="{x:Static fs:SortKey.Size}"
+                ToolTip.Tip="Sort by size (os)" />
+      </Grid>
+
+      <Panel x:Name="Listing">
+        <!-- Details: one virtualized row per entry. -->
+        <ItemsControl x:Name="List"
+                      ItemsSource="{Binding Items}"
+                      Background="Transparent"
+                      IsVisible="{Binding ShowsDetailsList}">
+          <ItemsControl.Template>
+            <ControlTemplate>
+              <ScrollViewer x:Name="PART_ScrollViewer"
+                            HorizontalScrollBarVisibility="Disabled"
+                            VerticalScrollBarVisibility="Auto"
+                            Background="{TemplateBinding Background}">
+                <ItemsPresenter x:Name="PART_ItemsPresenter"
+                                ItemsPanel="{TemplateBinding ItemsPanel}"
+                                Margin="0,0,0,8" />
+              </ScrollViewer>
+            </ControlTemplate>
+          </ItemsControl.Template>
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <VirtualizingStackPanel />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+          <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="vm:EntryViewModel">
+              <Border Classes="row"
+                      Classes.cursor="{Binding IsCursor}"
+                      Classes.marked="{Binding IsMarked}"
+                      Classes.match="{Binding IsMatch}"
+                      Classes.hiddenEntry="{Binding IsHidden}"
+                      Classes.cut="{Binding IsCut}"
+                      Classes.dropTarget="{Binding IsDropTarget}">
+                <Grid ColumnDefinitions="28,*,150,120,80">
+                  <Border Classes="markBar" />
+                  <ei:Icon Kind="{Binding Icon}" Size="16" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                  <TextBlock Grid.Column="1" Classes="name" Text="{Binding Name}" />
+                  <TextBlock Grid.Column="2" Classes="secondary" Text="{Binding ModifiedText}" />
+                  <TextBlock Grid.Column="3" Classes="secondary" Text="{Binding TypeText}" />
+                  <TextBlock Grid.Column="4" Classes="secondary size" Text="{Binding SizeText}" />
+                </Grid>
+              </Border>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- Icon views: rows of tiles, the rows virtualized, so a huge directory stays fast. -->
+        <ItemsControl x:Name="IconList"
+                      ItemsSource="{Binding Rows}"
+                      Background="Transparent"
+                      IsVisible="{Binding ShowsIconView}">
+          <ItemsControl.Template>
+            <ControlTemplate>
+              <ScrollViewer x:Name="PART_ScrollViewer"
+                            HorizontalScrollBarVisibility="Disabled"
+                            VerticalScrollBarVisibility="Auto"
+                            Background="{TemplateBinding Background}">
+                <ItemsPresenter x:Name="PART_ItemsPresenter"
+                                ItemsPanel="{TemplateBinding ItemsPanel}"
+                                Margin="6,4,6,8" />
+              </ScrollViewer>
+            </ControlTemplate>
+          </ItemsControl.Template>
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <VirtualizingStackPanel />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+          <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="vm:EntryRowViewModel">
+              <ItemsControl ItemsSource="{Binding Items}">
+                <ItemsControl.ItemsPanel>
+                  <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                  </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate x:DataType="vm:EntryViewModel">
+                    <Border Classes="tile"
+                            Classes.cursor="{Binding IsCursor}"
+                            Classes.marked="{Binding IsMarked}"
+                            Classes.match="{Binding IsMatch}"
+                            Classes.hiddenEntry="{Binding IsHidden}"
+                            Classes.cut="{Binding IsCut}"
+                            Classes.dropTarget="{Binding IsDropTarget}"
+                            Width="{Binding $parent[views:PaneView].((vm:PaneViewModel)DataContext).TileWidth, FallbackValue=104}"
+                            Height="{Binding $parent[views:PaneView].((vm:PaneViewModel)DataContext).TileHeight, FallbackValue=100}"
+                            ToolTip.Tip="{Binding Name}">
+                      <DockPanel>
+                        <ei:Icon DockPanel.Dock="Top"
+                                 Kind="{Binding Icon}"
+                                 Size="{Binding $parent[views:PaneView].((vm:PaneViewModel)DataContext).IconSize, FallbackValue=48}"
+                                 HorizontalAlignment="Center"
+                                 Margin="0,6,0,4" />
+                        <TextBlock Classes="tileName" Text="{Binding Name}" />
+                      </DockPanel>
+                    </Border>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- Search results: one virtualized row per hit, with its folder and, for contents, the line. -->
+        <ItemsControl x:Name="ResultsList"
+                      ItemsSource="{Binding Items}"
+                      Background="Transparent"
+                      IsVisible="{Binding IsSearchResults}">
+          <ItemsControl.Template>
+            <ControlTemplate>
+              <ScrollViewer x:Name="PART_ScrollViewer"
+                            HorizontalScrollBarVisibility="Disabled"
+                            VerticalScrollBarVisibility="Auto"
+                            Background="{TemplateBinding Background}">
+                <ItemsPresenter x:Name="PART_ItemsPresenter"
+                                ItemsPanel="{TemplateBinding ItemsPanel}"
+                                Margin="0,0,0,8" />
+              </ScrollViewer>
+            </ControlTemplate>
+          </ItemsControl.Template>
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <VirtualizingStackPanel />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+          <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="vm:EntryViewModel">
+              <Border Classes="row"
+                      Classes.cursor="{Binding IsCursor}"
+                      Classes.marked="{Binding IsMarked}"
+                      Classes.match="{Binding IsMatch}"
+                      Classes.hiddenEntry="{Binding IsHidden}"
+                      Classes.cut="{Binding IsCut}"
+                      Classes.dropTarget="{Binding IsDropTarget}">
+                <Grid ColumnDefinitions="28,*,200,56,2*">
+                  <Border Classes="markBar" />
+                  <ei:Icon Kind="{Binding Icon}" Size="16" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                  <TextBlock Grid.Column="1" Classes="name" Text="{Binding Name}" />
+                  <TextBlock Grid.Column="2" Classes="secondary" Text="{Binding Location}" ToolTip.Tip="{Binding FullPath}" />
+                  <TextBlock Grid.Column="3" Classes="secondary" Text="{Binding LineNumberText}" />
+                  <TextBlock Grid.Column="4" Classes="secondary lineText" Text="{Binding LineText}" />
+                </Grid>
+              </Border>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <TextBlock Classes="placeholder"
+                   Text="{Binding PlaceholderText}"
+                   IsVisible="{Binding PlaceholderText, Converter={x:Static ObjectConverters.IsNotNull}}" />
+      </Panel>
+    </DockPanel>
+  </Border>
+</UserControl>
