@@ -1,0 +1,90 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Enigma.FileExplorer.Desktop.ViewModels"
+        xmlns:controls="using:Enigma.Avalonia.Desktop.Controls"
+        xmlns:contentDialog="using:Enigma.Avalonia.Desktop.Controls.ContentDialog"
+        xmlns:infoBar="using:Enigma.Avalonia.Desktop.Controls.InfoBar"
+        xmlns:views="using:Enigma.FileExplorer.Desktop.Views"
+        xmlns:ei="https://github.com/josueclement/Enigma.Icons"
+        x:Class="Enigma.FileExplorer.Desktop.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="{Binding Title}"
+        Icon="/Assets/app.ico"
+        Width="1280"
+        Height="800"
+        MinWidth="640"
+        MinHeight="400"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource EnigmaBackgroundBrush}">
+
+  <Panel>
+    <DockPanel x:Name="Workspace">
+      <!-- The command line, below the status bar as in vim; hidden until ':', '/' or a prompt opens it. -->
+      <views:CommandLineView x:Name="CommandLine" DockPanel.Dock="Bottom" DataContext="{Binding CommandLine}" />
+
+      <!-- The status bar: the vim-style message line on the left, the listing summary on the right. -->
+      <Border DockPanel.Dock="Bottom" Classes="statusBar">
+        <Grid ColumnDefinitions="Auto,*,Auto,Auto,Auto">
+          <Border Classes="modeBadge" Classes.visual="{Binding Pane.IsVisualMode}">
+            <TextBlock x:Name="ModeText" Text="{Binding Keyboard.ModeText}" />
+          </Border>
+          <TextBlock x:Name="MessageLine"
+                     Grid.Column="1"
+                     Margin="10,0,0,0"
+                     Text="{Binding Status.Current.Text, FallbackValue=''}"
+                     Classes.error="{Binding Status.Current.IsError, FallbackValue=False}"
+                     TextTrimming="CharacterEllipsis" />
+          <TextBlock x:Name="PendingKeys"
+                     Grid.Column="2"
+                     Classes="pendingKeys"
+                     Text="{Binding Keyboard.PendingKeys}" />
+          <!-- The running copy or move: what, how far, and a way to stop it. -->
+          <StackPanel Grid.Column="3"
+                      Orientation="Horizontal"
+                      Spacing="8"
+                      Margin="12,0,0,0"
+                      IsVisible="{Binding Transfers.IsBusy}">
+            <TextBlock Text="{Binding Transfers.Title}" />
+            <TextBlock Text="{Binding Transfers.CurrentItem}"
+                       MaxWidth="220"
+                       TextTrimming="CharacterEllipsis"
+                       Foreground="{DynamicResource EnigmaForegroundSecondaryBrush}" />
+            <ProgressBar Value="{Binding Transfers.Fraction}"
+                         Maximum="1"
+                         Width="140"
+                         MinWidth="140"
+                         VerticalAlignment="Center" />
+            <Button Classes="crumb"
+                    Command="{Binding CancelTransferCommand}"
+                    ToolTip.Tip="Cancel the transfer (:cancel)"
+                    AutomationProperties.Name="Cancel the transfer">
+              <ei:Icon Kind="X" Size="12" />
+            </Button>
+          </StackPanel>
+          <TextBlock Grid.Column="4"
+                     Text="{Binding SummaryText}"
+                     Foreground="{DynamicResource EnigmaForegroundSecondaryBrush}"
+                     Margin="12,0,0,0" />
+        </Grid>
+      </Border>
+
+      <Grid ColumnDefinitions="200,Auto,*">
+        <views:PlacesView x:Name="PlacesSidebar" DataContext="{Binding Places}" />
+        <GridSplitter Grid.Column="1"
+                      Width="1"
+                      MinWidth="1"
+                      ResizeDirection="Columns"
+                      Background="{DynamicResource EnigmaBorderSubtleBrush}" />
+        <views:SplitHost x:Name="Splits" Grid.Column="2" DataContext="{Binding Workspace}" />
+      </Grid>
+    </DockPanel>
+
+    <!-- The three Enigma hosts, last so they overlay everything the explorer draws. -->
+    <contentDialog:ContentDialog x:Name="HostDialog"
+                                 DialogMinWidth="360"
+                                 DialogMaxWidth="900"
+                                 DialogMaxHeight="640" />
+    <controls:Overlay x:Name="HostOverlay" />
+    <infoBar:InfoBar x:Name="HostInfoBar" />
+  </Panel>
+</Window>

@@ -1,6 +1,6 @@
 # FEATURE-C4E7 — Foundation & directory browsing
 
-**Status:** TODO
+**Status:** IN PROGRESS
 **Type:** FEATURE
 **Branch:** `feature/feature-c4e7-<phase>-<slug>` (one per phase)
 **Run:** vibe/2026-10-14-vim-split-file-explorer
@@ -53,7 +53,7 @@ src/Enigma.FileExplorer.Desktop/
 
 ## PHASE01 — Solution scaffold & app shell
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-C4E7-PHASE01.md`
 **Branch:** `feature/feature-c4e7-phase01-scaffold`
 
 ### Steps
