@@ -107,7 +107,7 @@ declared in the catalog here and report "not available yet" until their item wir
 
 ## PHASE02 — Normal & visual mode, status line
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-2E0F-PHASE02.md`
 **Branch:** `feature/feature-2e0f-phase02-normal-visual-mode`
 
 ### Steps

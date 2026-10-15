@@ -12,7 +12,7 @@ completion records live in `docs/done/<ID>.md`.
 | - PHASE04    | Places, file icons & auto-refresh     | DONE        | (in FEATURE-C4E7.md)      |
 | FEATURE-2E0F | Vim keyboard & command system         | IN PROGRESS | docs/plan/FEATURE-2E0F.md |
 | - PHASE01    | Core keymap & ex-command parser       | DONE        | (in FEATURE-2E0F.md)      |
-| - PHASE02    | Normal & visual mode, status line     | TODO        | (in FEATURE-2E0F.md)      |
+| - PHASE02    | Normal & visual mode, status line     | DONE        | (in FEATURE-2E0F.md)      |
 | - PHASE03    | Command line, quick-jump & help       | TODO        | (in FEATURE-2E0F.md)      |
 | FEATURE-95D6 | Split groups                          | TODO        | docs/plan/FEATURE-95D6.md |
 | - PHASE01    | Core split-tree model                 | TODO        | (in FEATURE-95D6.md)      |
