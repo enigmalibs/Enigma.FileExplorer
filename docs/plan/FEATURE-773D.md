@@ -1,6 +1,6 @@
 # FEATURE-773D — Quick-jump match highlight
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-773D.md`
 **Type:** FEATURE
 **Branch:** `feature/feature-773d-jump-highlight`
 **Run:** vibe/2026-10-15-leader-keys-bookmarks
