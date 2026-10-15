@@ -81,7 +81,7 @@ src/Enigma.FileExplorer.Desktop/
 
 ## PHASE02 — Core directory listing & sorting
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-C4E7-PHASE02.md`
 **Branch:** `feature/feature-c4e7-phase02-directory-listing`
 
 ### Steps

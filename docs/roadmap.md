@@ -7,7 +7,7 @@ completion records live in `docs/done/<ID>.md`.
 |--------------|---------------------------------------|-------------|---------------------------|
 | FEATURE-C4E7 | Foundation & directory browsing       | IN PROGRESS | docs/plan/FEATURE-C4E7.md |
 | - PHASE01    | Solution scaffold & app shell         | DONE        | (in FEATURE-C4E7.md)      |
-| - PHASE02    | Core directory listing & sorting      | TODO        | (in FEATURE-C4E7.md)      |
+| - PHASE02    | Core directory listing & sorting      | DONE        | (in FEATURE-C4E7.md)      |
 | - PHASE03    | Pane browsing & navigation UI         | TODO        | (in FEATURE-C4E7.md)      |
 | - PHASE04    | Places, file icons & auto-refresh     | TODO        | (in FEATURE-C4E7.md)      |
 | FEATURE-2E0F | Vim keyboard & command system         | TODO        | docs/plan/FEATURE-2E0F.md |
