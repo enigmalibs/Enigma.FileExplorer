@@ -20,7 +20,7 @@ completion records live in `docs/done/<ID>.md`.
 | FEATURE-2A19 | View modes, sorting & hidden files    | DONE        | docs/plan/FEATURE-2A19.md |
 | FEATURE-BF6B | File operations                       | IN PROGRESS | docs/plan/FEATURE-BF6B.md |
 | - PHASE01    | Create, rename, trash & delete engine | DONE        | (in FEATURE-BF6B.md)      |
-| - PHASE02    | Copy/move transfer engine             | TODO        | (in FEATURE-BF6B.md)      |
+| - PHASE02    | Copy/move transfer engine             | DONE        | (in FEATURE-BF6B.md)      |
 | - PHASE03    | Create, rename & delete UI            | TODO        | (in FEATURE-BF6B.md)      |
 | - PHASE04    | Clipboard, transfer queue & conflicts | TODO        | (in FEATURE-BF6B.md)      |
 | FEATURE-6964 | File search                           | TODO        | docs/plan/FEATURE-6964.md |
