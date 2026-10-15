@@ -1,6 +1,6 @@
 # FEATURE-74BC — Start with a single fresh pane
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-74BC.md`
 **Type:** FEATURE
 **Branch:** `feature/feature-74bc-single-pane-start`
 **Run:** vibe/2026-10-15-leader-keys-bookmarks
