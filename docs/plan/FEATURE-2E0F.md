@@ -1,6 +1,6 @@
 # FEATURE-2E0F — Vim keyboard & command system
 
-**Status:** IN PROGRESS
+**Status:** DONE
 **Type:** FEATURE
 **Branch:** `feature/feature-2e0f-<phase>-<slug>` (one per phase)
 **Run:** vibe/2026-10-14-vim-split-file-explorer
@@ -134,7 +134,7 @@ declared in the catalog here and report "not available yet" until their item wir
 
 ## PHASE03 — Command line, quick-jump & help
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-2E0F-PHASE03.md`
 **Branch:** `feature/feature-2e0f-phase03-command-line`
 
 ### Steps
