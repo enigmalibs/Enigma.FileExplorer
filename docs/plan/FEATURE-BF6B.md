@@ -1,6 +1,6 @@
 # FEATURE-BF6B — File operations
 
-**Status:** TODO
+**Status:** IN PROGRESS
 **Type:** FEATURE
 **Branch:** `feature/feature-bf6b-<phase>-<slug>` (one per phase)
 **Run:** vibe/2026-10-14-vim-split-file-explorer
@@ -41,7 +41,7 @@ Desktop/          FileOperationCommands (handlers), IFileClipboard/FileClipboard
 
 ## PHASE01 — Create, rename, trash & delete engine
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/FEATURE-BF6B-PHASE01.md`
 **Branch:** `feature/feature-bf6b-phase01-file-ops-engine`
 
 ### Steps
