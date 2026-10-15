@@ -30,7 +30,7 @@ completion records live in `docs/done/<ID>.md`.
 | - PHASE01    | Context menus                         | DONE   | (in FEATURE-A6C2.md)      |
 | - PHASE02    | Drag & drop with drop menu            | DONE   | (in FEATURE-A6C2.md)      |
 | FEATURE-CA94 | Session persistence & settings        | DONE   | docs/plan/FEATURE-CA94.md |
-| BUG-13FA     | Split panes overlap after re-split    | TODO   | docs/plan/BUG-13FA.md     |
+| BUG-13FA     | Split panes overlap after re-split    | DONE   | docs/plan/BUG-13FA.md     |
 | FEATURE-74BC | Start with a single fresh pane        | TODO   | docs/plan/FEATURE-74BC.md |
 | FEATURE-6526 | Leader key & g-pane focus             | TODO   | docs/plan/FEATURE-6526.md |
 | FEATURE-5ACD | Trash confirmation & d/D keys         | TODO   | docs/plan/FEATURE-5ACD.md |

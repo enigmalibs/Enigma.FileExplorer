@@ -1,6 +1,6 @@
 # BUG-13FA — Split panes overlap after re-split
 
-**Status:** TODO
+**Status:** DONE — see `docs/done/BUG-13FA.md`
 **Type:** BUG
 **Branch:** `bugfix/bug-13fa-split-overlap`
 **Run:** vibe/2026-10-15-leader-keys-bookmarks
