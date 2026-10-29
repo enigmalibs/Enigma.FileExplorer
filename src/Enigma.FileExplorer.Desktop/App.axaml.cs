@@ -43,6 +43,11 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
+            // First: a command or a posted callback that throws from here on is caught and shown, not the end
+            // of the process. The dispatcher is safe to touch now that the platform is set up; the headless
+            // tests never come this way.
+            UnhandledExceptionHooks.InstallDispatcher();
+
             IHost host = BuildHost();
             host.Start();
             _host = host;
@@ -51,6 +56,12 @@ public partial class App : Application
             MainWindow window = services.GetRequiredService<MainWindow>();
 
             RegisterHosts(services, window);
+
+            // The safety net, as soon as the window has handed it its dialog host: anything caught before is
+            // handed over and shown.
+            IUnhandledErrorReporter errors = services.GetRequiredService<IUnhandledErrorReporter>();
+            UnhandledExceptionHooks.Attach(errors);
+            desktop.ShutdownRequested += (_, _) => errors.ShutdownStarted();
             MainWindowViewModel viewModel = services.GetRequiredService<MainWindowViewModel>();
             window.DataContext = viewModel;
 
@@ -106,8 +117,9 @@ public partial class App : Application
     }
 
     /// <summary>
-    /// Hands the window's host controls and storage provider to the Enigma services. Must run before the
-    /// window is shown: a service whose host is still unregistered throws the moment it is used.
+    /// Hands the window's host controls and storage provider to the Enigma services, and its dialog host to
+    /// the safety net. Must run before the window is shown: a service whose host is still unregistered
+    /// throws the moment it is used.
     /// </summary>
     /// <param name="services">The application's services.</param>
     /// <param name="window">The main window.</param>
@@ -122,6 +134,7 @@ public partial class App : Application
         services.GetRequiredService<IFileDialogService>().SetStorageProvider(window.StorageProvider);
         services.GetRequiredService<IFolderDialogService>().SetStorageProvider(window.StorageProvider);
         services.GetRequiredService<SystemClipboard>().Attach(window);
+        services.GetRequiredService<UnhandledErrorReporter>().RegisterHost(window.HostDialog);
     }
 
     private void OnExit(object? sender, ControlledApplicationLifetimeExitEventArgs e)
@@ -134,6 +147,11 @@ public partial class App : Application
         }
 
         _host = null;
+
+        // Closing: no cancellation is worth a word now, and a late report must not log through the container
+        // disposed below.
+        host.Services.GetRequiredService<IUnhandledErrorReporter>().ShutdownStarted();
+        UnhandledExceptionHooks.Detach();
 
         // Saved while the services are still alive; synchronous, as nothing runs after this.
         host.Services.GetRequiredService<Session>().Save();
