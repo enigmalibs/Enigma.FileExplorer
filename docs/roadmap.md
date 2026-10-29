@@ -51,4 +51,4 @@ completion records live in `docs/done/<ID>.md`.
 | - PHASE03    | Fire-and-forget tasks reach the net   | DONE   | (in FEATURE-C732.md)      |
 | FEATURE-6FDB | Linux install and uninstall scripts   | DONE   | docs/plan/FEATURE-6FDB.md |
 | FEATURE-E5D8 | Publish scripts for Windows and Linux | DONE   | docs/plan/FEATURE-E5D8.md |
-| FEATURE-26E7 | Release 0.2.0                         | TODO   | docs/plan/FEATURE-26E7.md |
+| FEATURE-26E7 | Release 0.2.0                         | DONE   | docs/plan/FEATURE-26E7.md |

@@ -1,6 +1,6 @@
 # FEATURE-26E7 — Release 0.2.0
 
-**Status:** TODO
+**Status:** DONE
 **Type:** FEATURE
 **Branch:** `feature/feature-26e7-release-0-2-0`
 **Run:** feature/2026-10-29-uniform-enigma-apps
