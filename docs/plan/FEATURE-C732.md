@@ -67,7 +67,7 @@ FEATURE-452D ported it, so the Enigma apps fail alike.
 
 ## PHASE02 — Error dialog and wiring
 
-**Status:** TODO
+**Status:** DONE
 **Branch:** `feature/feature-c732-phase02-error-dialog`
 
 ### Steps

@@ -47,7 +47,7 @@ completion records live in `docs/done/<ID>.md`.
 | FEATURE-5050 | App icon in the output directory      | DONE        | docs/plan/FEATURE-5050.md |
 | FEATURE-C732 | Catch unhandled exceptions            | IN PROGRESS | docs/plan/FEATURE-C732.md |
 | - PHASE01    | Error policy and process hooks        | DONE        | (in FEATURE-C732.md)      |
-| - PHASE02    | Error dialog and wiring               | TODO        | (in FEATURE-C732.md)      |
+| - PHASE02    | Error dialog and wiring               | DONE        | (in FEATURE-C732.md)      |
 | - PHASE03    | Fire-and-forget tasks reach the net   | TODO        | (in FEATURE-C732.md)      |
 | FEATURE-6FDB | Linux install and uninstall scripts   | TODO        | docs/plan/FEATURE-6FDB.md |
 | FEATURE-E5D8 | Publish scripts for Windows and Linux | TODO        | docs/plan/FEATURE-E5D8.md |
