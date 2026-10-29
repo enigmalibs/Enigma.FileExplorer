@@ -1,6 +1,6 @@
 # FEATURE-C732 — Catch unhandled exceptions
 
-**Status:** IN PROGRESS
+**Status:** DONE
 **Type:** FEATURE
 **Branch:** `feature/feature-c732-phaseNN-<slug>` (one per phase)
 **Run:** feature/2026-10-29-uniform-enigma-apps
@@ -101,7 +101,7 @@ FEATURE-452D ported it, so the Enigma apps fail alike.
 
 ## PHASE03 — Fire-and-forget tasks reach the net
 
-**Status:** TODO
+**Status:** DONE
 **Branch:** `feature/feature-c732-phase03-fire-and-forget`
 
 ### Steps

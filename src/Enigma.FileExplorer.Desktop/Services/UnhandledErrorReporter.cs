@@ -85,7 +85,7 @@ public sealed class UnhandledErrorReporter : IUnhandledErrorReporter
 
         if (_policy.Pending is not null)
         {
-            Dispatcher.UIThread.Post(() => _ = PresentAsync(), DispatcherPriority.Background);
+            Dispatcher.UIThread.Post(() => PresentAsync().Forget(), DispatcherPriority.Background);
         }
     }
 
@@ -119,7 +119,7 @@ public sealed class UnhandledErrorReporter : IUnhandledErrorReporter
         switch (_policy.Offer(exception))
         {
             case UnhandledErrorDecision.Queue:
-                _ = PresentAsync();
+                PresentAsync().Forget();
                 break;
             case UnhandledErrorDecision.Suppress:
                 _logger.LogDebug("The same error was shown less than {Window} ago; it is not shown again", UnhandledErrorPolicy.RepeatWindow);
@@ -157,7 +157,7 @@ public sealed class UnhandledErrorReporter : IUnhandledErrorReporter
         {
             UnhandledErrorView view = new()
             {
-                DataContext = new UnhandledErrorViewModel(batch, _clipboard.SetTextAsync, () => _ = _dialogs.HideAsync()),
+                DataContext = new UnhandledErrorViewModel(batch, _clipboard.SetTextAsync, () => _dialogs.HideAsync().Forget()),
             };
 
             await _dialogs.ShowAsync(dialog =>
@@ -185,7 +185,7 @@ public sealed class UnhandledErrorReporter : IUnhandledErrorReporter
 
         if (_policy.Pending is not null)
         {
-            _ = PresentAsync();
+            PresentAsync().Forget();
         }
     }
 
@@ -213,6 +213,6 @@ public sealed class UnhandledErrorReporter : IUnhandledErrorReporter
         _waitingFor = null;
 
         // Posted: the question's own continuation runs first, and may ask the next question at once.
-        Dispatcher.UIThread.Post(() => _ = PresentAsync(), DispatcherPriority.Background);
+        Dispatcher.UIThread.Post(() => PresentAsync().Forget(), DispatcherPriority.Background);
     }
 }
