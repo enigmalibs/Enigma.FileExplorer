@@ -80,7 +80,7 @@ public sealed class MainWindowViewModel : ObservableObject
         Places = places;
         Keyboard = keyboard;
         CommandLine = commandLine;
-        CommandLine.CommandSubmitted += (_, invocation) => _ = dispatcher.ExecuteAsync(ToInvocation(invocation));
+        CommandLine.CommandSubmitted += (_, invocation) => dispatcher.ExecuteAsync(ToInvocation(invocation)).Forget();
 
         _observedPane = workspace.ActivePane;
         _observedPane.PropertyChanged += OnPanePropertyChanged;
@@ -188,7 +188,7 @@ public sealed class MainWindowViewModel : ObservableObject
     private static CommandInvocation ToInvocation(ExInvocation invocation)
         => new(invocation.CommandId, Count: null, invocation.Argument, invocation.Bang);
 
-    private void OnPlaceRequested(object? sender, PlaceViewModel place) => _ = Pane.NavigateAsync(place.Path);
+    private void OnPlaceRequested(object? sender, PlaceViewModel place) => Pane.NavigateAsync(place.Path).Forget();
 
     private void OnWorkspacePropertyChanged(object? sender, PropertyChangedEventArgs e)
     {

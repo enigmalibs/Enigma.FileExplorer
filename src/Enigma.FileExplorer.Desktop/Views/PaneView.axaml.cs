@@ -10,6 +10,7 @@ using Avalonia.Interactivity;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 using Enigma.FileExplorer.Core.Operations;
+using Enigma.FileExplorer.Desktop.Services;
 using Enigma.FileExplorer.Desktop.ViewModels;
 
 namespace Enigma.FileExplorer.Desktop.Views;
@@ -266,7 +267,7 @@ public partial class PaneView : UserControl
         {
             if (e.ClickCount >= 2)
             {
-                _ = _pane.OpenAsync(item);
+                _pane.OpenAsync(item).Forget();
             }
             else
             {
@@ -309,7 +310,7 @@ public partial class PaneView : UserControl
 
         bool onItem = source.FindAncestorOfType<Border>(includeSelf: true) is { DataContext: EntryViewModel };
         e.Handled = true;
-        _ = OpenMenuAsync(onItem, new Rect(position, new Size(1, 1)));
+        OpenMenuAsync(onItem, new Rect(position, new Size(1, 1))).Forget();
     }
 
     private void OnContextMenuRequested(object? sender, EventArgs e)
@@ -322,12 +323,12 @@ public partial class PaneView : UserControl
         // Below the cursor entry, as Explorer and Dolphin do; an empty pane gets its own menu near its corner.
         if ((_pane.CursorItem is { } item) && (ContainerOf(item) is { } container) && (container.TranslatePoint(default, this) is { } corner))
         {
-            _ = OpenMenuAsync(forItems: true, new Rect(corner, container.Bounds.Size));
+            OpenMenuAsync(forItems: true, new Rect(corner, container.Bounds.Size)).Forget();
         }
         else
         {
             Point near = Listing.TranslatePoint(new Point(24, 8), this) ?? default;
-            _ = OpenMenuAsync(forItems: _pane.CursorItem is not null, new Rect(near, new Size(1, 1)));
+            OpenMenuAsync(forItems: _pane.CursorItem is not null, new Rect(near, new Size(1, 1))).Forget();
         }
     }
 
@@ -357,7 +358,7 @@ public partial class PaneView : UserControl
         {
             // Run once the menu has closed and the listing has the keyboard back, so a command that asks a
             // question (Rename) can hand the keyboard to the command line.
-            Dispatcher.UIThread.Post(() => _ = menus.RunAsync(entry), DispatcherPriority.Background);
+            Dispatcher.UIThread.Post(() => menus.RunAsync(entry).Forget(), DispatcherPriority.Background);
         });
 
         ShowMenu(menu, anchor);
@@ -508,7 +509,7 @@ public partial class PaneView : UserControl
         PaneViewModel? into = folder is null ? _pane : null;
 
         // Finished after the drop returns: the drag's own loop must be over before a menu opens.
-        Dispatcher.UIThread.Post(() => _ = FileDropTarget.CompleteAsync(drops, plan, () => AskDropAsync(position), into));
+        Dispatcher.UIThread.Post(() => FileDropTarget.CompleteAsync(drops, plan, () => AskDropAsync(position), into).Forget());
     }
 
     private Task<TransferMode?> AskDropAsync(Point position)

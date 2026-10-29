@@ -17,7 +17,7 @@ public sealed class BookmarksDialogService(IContentDialogService dialogs, Bookma
     /// <inheritdoc />
     public async Task<Bookmark?> ShowAsync()
     {
-        BookmarksViewModel viewModel = new(bookmarks, CurrentFolder, () => _ = dialogs.HideAsync());
+        BookmarksViewModel viewModel = new(bookmarks, CurrentFolder, () => dialogs.HideAsync().Forget());
 
         DialogResult result = await dialogs.ShowAsync(dialog =>
         {

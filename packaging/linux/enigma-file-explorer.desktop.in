@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.5
+Name=Enigma File Explorer
+GenericName=File Manager
+Comment=A keyboard-first file explorer with vim keys and split panes
+Exec=@EXEC@
+Icon=enigma-file-explorer
+Terminal=false
+Categories=System;FileTools;FileManager;
+Keywords=files;folders;explorer;file manager;browse;copy;move;rename;vim;
+StartupNotify=true
+StartupWMClass=Enigma.FileExplorer.Desktop

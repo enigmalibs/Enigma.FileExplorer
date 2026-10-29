@@ -8,6 +8,7 @@ using Enigma.FileExplorer.Desktop.Services;
 using Enigma.FileExplorer.Desktop.ViewModels;
 using Enigma.FileExplorer.Desktop.Views;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 
 namespace Enigma.FileExplorer.Desktop.DependencyInjection;
@@ -87,6 +88,12 @@ public static class ServiceCollectionExtensions
             services.AddSingleton<KeyboardController>();
             services.AddSingleton<ContextMenus>();
             services.AddSingleton<FileDrops>();
+
+            // The safety net. One instance under both names: the composition root hands the concrete one the
+            // window's dialog host, and everything else reports through the interface.
+            services.TryAddSingleton(TimeProvider.System);
+            services.AddSingleton<UnhandledErrorReporter>();
+            services.AddSingleton<IUnhandledErrorReporter>(provider => provider.GetRequiredService<UnhandledErrorReporter>());
 
             // The session: the theme, and what is saved at exit and restored at start. The keymap is built from
             // it too, with the leader key the settings choose.

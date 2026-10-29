@@ -1,6 +1,7 @@
 using System;
 using System.Buffers.Binary;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using Avalonia;
@@ -14,12 +15,14 @@ using Xunit;
 namespace Enigma.FileExplorer.Desktop.UnitTests;
 
 /// <summary>
-/// The application icon as the assembly ships it: the six frames of <c>app.ico</c>, the copy of its
-/// largest frame the About dialog shows, and the window that carries it.
+/// The application icon as the assembly ships it: the ten frames of <c>app.ico</c>, the copy of its
+/// largest frame the About dialog shows, its copy in the output directory, the Linux installer's copies,
+/// and the window that carries it.
 /// </summary>
 /// <remarks>
-/// The frames are rendered from <c>packaging/icon/*.svg</c> and packed by hand, so these pin what a
-/// regeneration has to keep: the sizes, the encoding, and the copy being a copy.
+/// The frames are rendered from <c>packaging/icon/enigma-file-explorer.svg</c> and packed by the Branding
+/// repository's export tool, so these pin what a regeneration has to keep: the sizes, the encoding, and
+/// the copies being copies.
 /// </remarks>
 [Collection(HeadlessCollection.Name)]
 public sealed class AppIconTests(HeadlessAvaloniaFixture fixture)
@@ -27,14 +30,15 @@ public sealed class AppIconTests(HeadlessAvaloniaFixture fixture)
     private static readonly byte[] PngSignature = [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A];
 
     [Fact]
-    public void TheIcon_HoldsSixSquare32BitPngFramesFrom16To256()
+    public void TheIcon_HoldsTenSquare32BitPngFramesFrom16To256()
     {
         fixture.Run(() =>
         {
             byte[] icon = ReadAsset("app.ico");
             IReadOnlyList<IconFrame> frames = ReadFrames(icon);
 
-            Assert.Equal([16, 32, 48, 64, 128, 256], frames.Select(frame => frame.Size));
+            // 20, 24 and 40 are the frames Windows picks at 125 % and 150 % display scaling.
+            Assert.Equal([16, 20, 24, 32, 40, 48, 64, 96, 128, 256], frames.Select(frame => frame.Size));
 
             foreach (IconFrame frame in frames)
             {
@@ -63,6 +67,41 @@ public sealed class AppIconTests(HeadlessAvaloniaFixture fixture)
             using MemoryStream stream = new(image);
             using Bitmap bitmap = new(stream);
             Assert.Equal(new PixelSize(256, 256), bitmap.PixelSize);
+        });
+    }
+
+    [Fact]
+    public void TheLinuxIcons_AreTheIconsFramesByteForByte_AndBothScriptsListTheSameSizes()
+    {
+        fixture.Run(() =>
+        {
+            int[] sizes = IconSizes("install.sh");
+            IReadOnlyList<IconFrame> frames = ReadFrames(ReadAsset("app.ico"));
+
+            // The uninstaller removes what the installer wrote, so it has to know the same sizes.
+            Assert.Equal(sizes, IconSizes("uninstall.sh"));
+
+            foreach (int size in sizes)
+            {
+                IconFrame frame = Assert.Single(frames, candidate => candidate.Size == size);
+                byte[] png = File.ReadAllBytes(Path.Combine(RepositoryRoot.Find(), "packaging", "linux", "icons", $"enigma-file-explorer-{size}.png"));
+
+                Assert.Equal(frame.Png, png);
+            }
+        });
+    }
+
+    [Fact]
+    public void TheIconFile_SitsInTheOutputDirectoryByteForByte()
+    {
+        fixture.Run(() =>
+        {
+            // The application's copy of its output reaches this test's output as a referenced project's
+            // file, under the same name (FEATURE-5050).
+            string copy = Path.Combine(AppContext.BaseDirectory, "app.ico");
+
+            Assert.True(File.Exists(copy), $"no app.ico in {AppContext.BaseDirectory}");
+            Assert.Equal(ReadAsset("app.ico"), File.ReadAllBytes(copy));
         });
     }
 
@@ -115,6 +154,22 @@ public sealed class AppIconTests(HeadlessAvaloniaFixture fixture)
         }
 
         return frames;
+    }
+
+    /// <summary>
+    /// The sizes a Linux packaging script's <c>ICON_SIZES</c> array lists, in its order.
+    /// </summary>
+    private static int[] IconSizes(string script)
+    {
+        const string declaration = "readonly ICON_SIZES=(";
+
+        string line = Assert.Single(
+            File.ReadAllLines(Path.Combine(RepositoryRoot.Find(), "packaging", "linux", script)),
+            text => text.StartsWith(declaration, StringComparison.Ordinal));
+
+        return [.. line[declaration.Length..line.IndexOf(')', StringComparison.Ordinal)]
+            .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+            .Select(size => int.Parse(size, CultureInfo.InvariantCulture))];
     }
 
     private sealed record IconFrame(int Size, int BitCount, byte[] Png);

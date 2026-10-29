@@ -1,0 +1,96 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Enigma.FileExplorer.Desktop.ViewModels"
+             x:Class="Enigma.FileExplorer.Desktop.Views.UnhandledErrorView"
+             x:DataType="vm:UnhandledErrorViewModel"
+             Focusable="True"
+             MinWidth="480">
+
+  <!-- Enigma.GitClient's error view, at the same size and in the same style, so the Enigma apps fail
+       alike. Its toolbar button lives in GitClient's app-wide styles; here it is the view's own, the only
+       place this app uses it. Focusable, so it can take the keyboard as it opens: q and Enter close it,
+       Esc is the dialog's. -->
+
+  <UserControl.Styles>
+    <Style Selector="Button.toolbar">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderBrush" Value="{DynamicResource EnigmaBorderBrush}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="CornerRadius" Value="4" />
+      <Setter Property="Padding" Value="6,5" />
+      <Setter Property="Foreground" Value="{DynamicResource EnigmaForegroundBrush}" />
+    </Style>
+    <Style Selector="Button.toolbar /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="BorderBrush" Value="{DynamicResource EnigmaBorderBrush}" />
+      <Setter Property="CornerRadius" Value="4" />
+    </Style>
+    <Style Selector="Button.toolbar:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource EnigmaHoverBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource EnigmaBorderBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource EnigmaForegroundBrush}" />
+    </Style>
+    <Style Selector="Button.toolbar:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource EnigmaPressedBrush}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource EnigmaBorderBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource EnigmaForegroundBrush}" />
+    </Style>
+  </UserControl.Styles>
+
+  <StackPanel Spacing="12">
+
+    <TextBlock x:Name="LeadText"
+               Text="{Binding Lead}"
+               TextWrapping="Wrap"
+               MaxWidth="560"
+               HorizontalAlignment="Left"
+               Foreground="{DynamicResource EnigmaForegroundBrush}" />
+
+    <TextBlock x:Name="MessageText"
+               Text="{Binding Message}"
+               TextWrapping="Wrap"
+               MaxWidth="560"
+               HorizontalAlignment="Left"
+               FontWeight="SemiBold"
+               Foreground="{DynamicResource EnigmaForegroundBrush}" />
+
+    <TextBlock x:Name="MoreText"
+               Text="{Binding MoreText}"
+               IsVisible="{Binding HasMore}"
+               TextWrapping="Wrap"
+               MaxWidth="560"
+               HorizontalAlignment="Left"
+               Foreground="{DynamicResource EnigmaForegroundSecondaryBrush}" />
+
+    <!-- Collapsed: the details are for a bug report, not for reading. Selectable, so a part of them can
+         be copied too, and bounded, so a long stack scrolls inside the dialog. -->
+    <Expander x:Name="DetailsExpander"
+              Header="Details"
+              IsExpanded="False"
+              HorizontalAlignment="Stretch"
+              AutomationProperties.Name="Details of the error">
+      <StackPanel Spacing="8">
+        <TextBox x:Name="DetailsText"
+                 Text="{Binding Details, Mode=OneWay}"
+                 IsReadOnly="True"
+                 TextWrapping="NoWrap"
+                 AcceptsReturn="True"
+                 MaxHeight="220"
+                 MaxWidth="560"
+                 FontSize="12"
+                 FontFamily="{DynamicResource MonospaceFontFamily}"
+                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 AutomationProperties.Name="The details of the error" />
+        <Button x:Name="CopyDetailsButton"
+                Classes="toolbar"
+                HorizontalAlignment="Left"
+                Command="{Binding CopyDetailsCommand}"
+                ToolTip.Tip="Copy the details, to paste them into a bug report"
+                AutomationProperties.Name="Copy details">
+          <TextBlock Text="Copy details" />
+        </Button>
+      </StackPanel>
+    </Expander>
+  </StackPanel>
+</UserControl>
