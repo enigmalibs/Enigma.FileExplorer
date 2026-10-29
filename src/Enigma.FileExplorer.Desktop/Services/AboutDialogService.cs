@@ -20,7 +20,7 @@ public sealed class AboutDialogService(IContentDialogService dialogs) : IAboutDi
             // No title and no icon: the card would draw them as a column beside the content, and the view
             // already shows the application's own icon and name above everything else.
             dialog.Title = null;
-            dialog.Content = new AboutView { DataContext = new AboutViewModel(() => _ = dialogs.HideAsync()) };
+            dialog.Content = new AboutView { DataContext = new AboutViewModel(() => dialogs.HideAsync().Forget()) };
 
             // One button, and it only dismisses: the dialog asks nothing.
             dialog.CloseButtonText = "Close";

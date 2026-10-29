@@ -1019,7 +1019,7 @@ public sealed class PaneViewModel : ObservableObject, IDisposable
         // flight will show the change anyway, and search results are a snapshot, refreshed on demand.
         if (!_disposed && (_loading is null) && !IsSearchResults)
         {
-            _ = RefreshAsync();
+            RefreshAsync().Forget();
         }
     }
 

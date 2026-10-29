@@ -58,11 +58,21 @@ public sealed class CompositionRootTests
     [InlineData(typeof(IFileDialogService))]
     [InlineData(typeof(IFolderDialogService))]
     [InlineData(typeof(MainWindowViewModel))]
+    [InlineData(typeof(IUnhandledErrorReporter))]
     public void Container_ResolvesService(Type serviceType)
     {
         using ServiceProvider provider = BuildProvider();
 
         Assert.NotNull(provider.GetRequiredService(serviceType));
+    }
+
+    [Fact]
+    public void TheSafetyNet_IsOneInstance_UnderBothNames()
+    {
+        using ServiceProvider provider = BuildProvider();
+
+        // RegisterHosts hands the concrete one the dialog host; the hooks report through the interface.
+        Assert.Same(provider.GetRequiredService<UnhandledErrorReporter>(), provider.GetRequiredService<IUnhandledErrorReporter>());
     }
 
     [Fact]
