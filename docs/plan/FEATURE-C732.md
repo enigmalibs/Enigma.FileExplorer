@@ -1,6 +1,6 @@
 # FEATURE-C732 — Catch unhandled exceptions
 
-**Status:** TODO
+**Status:** IN PROGRESS
 **Type:** FEATURE
 **Branch:** `feature/feature-c732-phaseNN-<slug>` (one per phase)
 **Run:** feature/2026-10-29-uniform-enigma-apps
@@ -37,7 +37,7 @@ FEATURE-452D ported it, so the Enigma apps fail alike.
 
 ## PHASE01 — Error policy and process hooks
 
-**Status:** TODO
+**Status:** DONE
 **Branch:** `feature/feature-c732-phase01-error-policy-hooks`
 
 ### Steps
