@@ -1,6 +1,6 @@
 # FEATURE-8929 — New application icon
 
-**Status:** TODO
+**Status:** DONE
 **Type:** FEATURE
 **Branch:** `feature/feature-8929-new-app-icon`
 **Run:** feature/2026-10-29-uniform-enigma-apps

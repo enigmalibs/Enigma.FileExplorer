@@ -1,26 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  The application icon: the master for the 48, 64, 128 and 256 pixel frames.
-  The 16 and 32 pixel frames come from enigma-file-explorer-small.svg, hinted for their size.
-
-  A folder holding a listing, its cursor row in green: what the explorer shows, drawn on the tile and
-  in the colours of the other Enigma applications.
-
-  Regenerating the frames: render each master to a square 32-bit RGBA PNG with any SVG rasterizer,
-  for example, from the repository root:
-
-    rsvg-convert -w N -h N packaging/icon/enigma-file-explorer.svg       -o enigma-file-explorer-N.png   (48 64 128 256)
-    rsvg-convert -w N -h N packaging/icon/enigma-file-explorer-small.svg -o enigma-file-explorer-N.png   (16 32)
-
-  then pack the six PNGs, unchanged and smallest first, as the 32-bit PNG entries of
-  src/Enigma.FileExplorer.Desktop/Assets/app.ico, and copy the 256 one byte for byte to
-  src/Enigma.FileExplorer.Desktop/Assets/app-256.png.
+  Enigma.FileExplorer application icon: FE-E2 in Branding/Apps/preview.html, Open folder in the Soft palette.
+  The master for every frame, 16 to 256 px.
+  Regenerate the SVGs, the PNG frames and the .ico with: python3 Branding/Apps/export.py
 -->
 <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
   <rect x="8" y="8" width="240" height="240" rx="48" fill="#1E1F22"/>
-  <path d="M60 60H98Q104 60 108 64L122 78H196A12 12 0 0 1 208 90V184A12 12 0 0 1 196 196H60A12 12 0 0 1 48 184V72A12 12 0 0 1 60 60Z" fill="#2558C4"/>
-  <rect x="48" y="98" width="160" height="98" rx="12" fill="#3574F0"/>
-  <rect x="64" y="114" width="128" height="18" rx="5" fill="#2D56A8"/>
-  <rect x="64" y="138" width="128" height="18" rx="5" fill="#3FB950"/>
-  <rect x="64" y="162" width="128" height="18" rx="5" fill="#2D56A8"/>
+  <path d="M36 62A12 12 0 0 1 48 50H94L108 64H188A12 12 0 0 1 200 76V184A12 12 0 0 1 188 196H48A12 12 0 0 1 36 184Z" fill="#4F7FDB"/>
+  <rect x="64" y="72" width="116" height="92" rx="8" fill="#63C77D"/>
+  <path d="M66 112H218L198 192H42Z" fill="#6A9BF4" stroke="#6A9BF4" stroke-width="12" stroke-linejoin="round"/>
 </svg>
