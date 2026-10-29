@@ -15,12 +15,13 @@ namespace Enigma.FileExplorer.Desktop.UnitTests;
 
 /// <summary>
 /// The application icon as the assembly ships it: the ten frames of <c>app.ico</c>, the copy of its
-/// largest frame the About dialog shows, and the window that carries it.
+/// largest frame the About dialog shows, its copy in the output directory, and the window that carries
+/// it.
 /// </summary>
 /// <remarks>
 /// The frames are rendered from <c>packaging/icon/enigma-file-explorer.svg</c> and packed by the Branding
 /// repository's export tool, so these pin what a regeneration has to keep: the sizes, the encoding, and
-/// the copy being a copy.
+/// the copies being copies.
 /// </remarks>
 [Collection(HeadlessCollection.Name)]
 public sealed class AppIconTests(HeadlessAvaloniaFixture fixture)
@@ -65,6 +66,20 @@ public sealed class AppIconTests(HeadlessAvaloniaFixture fixture)
             using MemoryStream stream = new(image);
             using Bitmap bitmap = new(stream);
             Assert.Equal(new PixelSize(256, 256), bitmap.PixelSize);
+        });
+    }
+
+    [Fact]
+    public void TheIconFile_SitsInTheOutputDirectoryByteForByte()
+    {
+        fixture.Run(() =>
+        {
+            // The application's copy of its output reaches this test's output as a referenced project's
+            // file, under the same name (FEATURE-5050).
+            string copy = Path.Combine(AppContext.BaseDirectory, "app.ico");
+
+            Assert.True(File.Exists(copy), $"no app.ico in {AppContext.BaseDirectory}");
+            Assert.Equal(ReadAsset("app.ico"), File.ReadAllBytes(copy));
         });
     }
 

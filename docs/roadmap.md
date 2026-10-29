@@ -44,7 +44,7 @@ completion records live in `docs/done/<ID>.md`.
 | - PHASE02    | About dialog                          | DONE   | (in FEATURE-743A.md)      |
 | FEATURE-CC7E | Update NuGet packages                 | DONE   | docs/plan/FEATURE-CC7E.md |
 | FEATURE-8929 | New application icon                  | DONE   | docs/plan/FEATURE-8929.md |
-| FEATURE-5050 | App icon in the output directory      | TODO   | docs/plan/FEATURE-5050.md |
+| FEATURE-5050 | App icon in the output directory      | DONE   | docs/plan/FEATURE-5050.md |
 | FEATURE-C732 | Catch unhandled exceptions            | TODO   | docs/plan/FEATURE-C732.md |
 | - PHASE01    | Error policy and process hooks        | TODO   | (in FEATURE-C732.md)      |
 | - PHASE02    | Error dialog and wiring               | TODO   | (in FEATURE-C732.md)      |
