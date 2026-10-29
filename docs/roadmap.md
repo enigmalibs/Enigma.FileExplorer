@@ -42,7 +42,7 @@ completion records live in `docs/done/<ID>.md`.
 | FEATURE-743A | App icon & About dialog               | DONE   | docs/plan/FEATURE-743A.md |
 | - PHASE01    | Application icon                      | DONE   | (in FEATURE-743A.md)      |
 | - PHASE02    | About dialog                          | DONE   | (in FEATURE-743A.md)      |
-| FEATURE-CC7E | Update NuGet packages                 | TODO   | docs/plan/FEATURE-CC7E.md |
+| FEATURE-CC7E | Update NuGet packages                 | DONE   | docs/plan/FEATURE-CC7E.md |
 | FEATURE-8929 | New application icon                  | TODO   | docs/plan/FEATURE-8929.md |
 | FEATURE-5050 | App icon in the output directory      | TODO   | docs/plan/FEATURE-5050.md |
 | FEATURE-C732 | Catch unhandled exceptions            | TODO   | docs/plan/FEATURE-C732.md |
