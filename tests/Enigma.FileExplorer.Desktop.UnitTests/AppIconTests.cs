@@ -1,6 +1,7 @@
 using System;
 using System.Buffers.Binary;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using Avalonia;
@@ -15,8 +16,8 @@ namespace Enigma.FileExplorer.Desktop.UnitTests;
 
 /// <summary>
 /// The application icon as the assembly ships it: the ten frames of <c>app.ico</c>, the copy of its
-/// largest frame the About dialog shows, its copy in the output directory, and the window that carries
-/// it.
+/// largest frame the About dialog shows, its copy in the output directory, the Linux installer's copies,
+/// and the window that carries it.
 /// </summary>
 /// <remarks>
 /// The frames are rendered from <c>packaging/icon/enigma-file-explorer.svg</c> and packed by the Branding
@@ -66,6 +67,27 @@ public sealed class AppIconTests(HeadlessAvaloniaFixture fixture)
             using MemoryStream stream = new(image);
             using Bitmap bitmap = new(stream);
             Assert.Equal(new PixelSize(256, 256), bitmap.PixelSize);
+        });
+    }
+
+    [Fact]
+    public void TheLinuxIcons_AreTheIconsFramesByteForByte_AndBothScriptsListTheSameSizes()
+    {
+        fixture.Run(() =>
+        {
+            int[] sizes = IconSizes("install.sh");
+            IReadOnlyList<IconFrame> frames = ReadFrames(ReadAsset("app.ico"));
+
+            // The uninstaller removes what the installer wrote, so it has to know the same sizes.
+            Assert.Equal(sizes, IconSizes("uninstall.sh"));
+
+            foreach (int size in sizes)
+            {
+                IconFrame frame = Assert.Single(frames, candidate => candidate.Size == size);
+                byte[] png = File.ReadAllBytes(Path.Combine(RepositoryRoot.Find(), "packaging", "linux", "icons", $"enigma-file-explorer-{size}.png"));
+
+                Assert.Equal(frame.Png, png);
+            }
         });
     }
 
@@ -132,6 +154,22 @@ public sealed class AppIconTests(HeadlessAvaloniaFixture fixture)
         }
 
         return frames;
+    }
+
+    /// <summary>
+    /// The sizes a Linux packaging script's <c>ICON_SIZES</c> array lists, in its order.
+    /// </summary>
+    private static int[] IconSizes(string script)
+    {
+        const string declaration = "readonly ICON_SIZES=(";
+
+        string line = Assert.Single(
+            File.ReadAllLines(Path.Combine(RepositoryRoot.Find(), "packaging", "linux", script)),
+            text => text.StartsWith(declaration, StringComparison.Ordinal));
+
+        return [.. line[declaration.Length..line.IndexOf(')', StringComparison.Ordinal)]
+            .Split(' ', StringSplitOptions.RemoveEmptyEntries)
+            .Select(size => int.Parse(size, CultureInfo.InvariantCulture))];
     }
 
     private sealed record IconFrame(int Size, int BitCount, byte[] Png);
