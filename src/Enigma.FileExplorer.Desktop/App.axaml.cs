@@ -75,7 +75,7 @@ public partial class App : Application
             desktop.MainWindow = window;
 
             // Posted, so the window is on screen before the first directory is read.
-            Dispatcher.UIThread.Post(() => _ = viewModel.StartAsync(path, settings.Pane));
+            Dispatcher.UIThread.Post(() => viewModel.StartAsync(path, settings.Pane).Forget(UnhandledErrorSource.Startup));
             desktop.Exit += OnExit;
         }
 

@@ -5,6 +5,7 @@ using Avalonia.Input;
 using Avalonia.Threading;
 using Avalonia.VisualTree;
 using Enigma.FileExplorer.Core.Operations;
+using Enigma.FileExplorer.Desktop.Services;
 using Enigma.FileExplorer.Desktop.ViewModels;
 
 namespace Enigma.FileExplorer.Desktop.Views;
@@ -81,7 +82,7 @@ public partial class PlacesView : UserControl
         Point position = e.GetPosition(this);
 
         // Finished after the drop returns: the drag's own loop must be over before a menu opens.
-        Dispatcher.UIThread.Post(() => _ = FileDropTarget.CompleteAsync(drops, plan, () => AskDropAsync(position), into: null));
+        Dispatcher.UIThread.Post(() => FileDropTarget.CompleteAsync(drops, plan, () => AskDropAsync(position), into: null).Forget());
     }
 
     private Task<TransferMode?> AskDropAsync(Point position)

@@ -19,7 +19,7 @@ public sealed class HelpDialogService(IContentDialogService dialogs, CommandCata
         await dialogs.ShowAsync(dialog =>
         {
             dialog.Title = "Key bindings";
-            dialog.Content = new HelpView { DataContext = new HelpViewModel(catalog, () => _ = dialogs.HideAsync()) };
+            dialog.Content = new HelpView { DataContext = new HelpViewModel(catalog, () => dialogs.HideAsync().Forget()) };
             dialog.CloseButtonText = "Close";
         });
     }
