@@ -1,6 +1,6 @@
 # FEATURE-27BF — Release 0.3.0
 
-**Status:** TODO
+**Status:** DONE
 **Type:** FEATURE
 **Branch:** `feature/feature-27bf-release-0-3-0`
 **Run:** feature/2026-11-03-icons-msi-release

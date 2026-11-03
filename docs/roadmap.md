@@ -56,4 +56,4 @@ completion records live in `docs/done/<ID>.md`.
 | FEATURE-5447 | Windows MSI build script              | DONE   | docs/plan/FEATURE-5447.md |
 | - PHASE01    | Vendor the Enigma.Msi worker CLI      | DONE   | (in FEATURE-5447.md)      |
 | - PHASE02    | The buildmsi script                   | DONE   | (in FEATURE-5447.md)      |
-| FEATURE-27BF | Release 0.3.0                         | TODO   | docs/plan/FEATURE-27BF.md |
+| FEATURE-27BF | Release 0.3.0                         | DONE   | docs/plan/FEATURE-27BF.md |
