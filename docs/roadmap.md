@@ -52,3 +52,8 @@ completion records live in `docs/done/<ID>.md`.
 | FEATURE-6FDB | Linux install and uninstall scripts   | DONE   | docs/plan/FEATURE-6FDB.md |
 | FEATURE-E5D8 | Publish scripts for Windows and Linux | DONE   | docs/plan/FEATURE-E5D8.md |
 | FEATURE-26E7 | Release 0.2.0                         | DONE   | docs/plan/FEATURE-26E7.md |
+| FEATURE-4ACE | New icon set without the tile         | TODO   | docs/plan/FEATURE-4ACE.md |
+| FEATURE-5447 | Windows MSI build script              | TODO   | docs/plan/FEATURE-5447.md |
+| - PHASE01    | Vendor the Enigma.Msi worker CLI      | TODO   | (in FEATURE-5447.md)      |
+| - PHASE02    | The buildmsi script                   | TODO   | (in FEATURE-5447.md)      |
+| FEATURE-27BF | Release 0.3.0                         | TODO   | docs/plan/FEATURE-27BF.md |
