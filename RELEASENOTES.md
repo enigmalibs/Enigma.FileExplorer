@@ -1,5 +1,65 @@
 # Release notes
 
+## 0.3.0 — 2026-11-03
+
+A minor release:
+
+- the **application icon drops its dark tile**: the open folder stands on a transparent background, in the taskbar,
+  the window, the About dialog and the Linux launcher;
+- a **Windows installer in one command**: `packaging\windows\buildmsi.ps1`, or `buildmsi.bat`, cleans the repository,
+  publishes, and builds `artifacts\Enigma.FileExplorer.0.3.0.msi`.
+
+### The icon without its tile
+
+- **The same drawing, without the dark rounded square.** The open folder keeps its blues (`#4F7FDB`, `#6A9BF4`) and
+  the green (`#63C77D`) of the page inside it, and stands on whatever is behind it.
+- **The same files and sizes.** `app.ico` still holds ten frames, from 16 to 256 pixels. It is in the executable, on
+  the window, and beside the executable as `app.ico`. The About dialog shows its 256-pixel frame, and the Linux
+  installer installs eight sizes from `packaging/linux/icons`.
+
+### The Windows installer
+
+- **One command, from any directory**: `packaging\windows\buildmsi.ps1`, or `buildmsi.bat` from a `cmd` prompt.
+
+  | Step                | What it does                                                                              |
+  |---------------------|-------------------------------------------------------------------------------------------|
+  | 1. `git clean -dxf` | Deletes every file git does not track: build output, `artifacts\`, IDE folders, new files |
+  | 2. `publish.ps1`    | The usual publish: `-c Release -r win-x64 -p:PublishReadyToRun=true`                      |
+  | 3. Enigma.Msi       | Packages the publish folder, uncompressed, into `artifacts\Enigma.FileExplorer.X.Y.Z.msi` |
+
+- **What the MSI installs**: **Enigma File Explorer** for all users, in `%ProgramFiles%\Enigma File Explorer`, with a
+  shortcut on the desktop and one in the program menu, both with the application's icon. In *Installed apps* it shows
+  as Enigma File Explorer by Josué Clément.
+- **Later MSIs replace it.** Every MSI carries the same upgrade code, the explorer's own. The code is written once in
+  the script, and `WindowsInstallerIdentityTests` pins it.
+- **The version is the one in `Directory.Build.props`.** The profile the MSI was built from is kept beside it, as
+  `Enigma.FileExplorer.X.Y.Z.msipkg.json`. Nothing about the installer is edited for a release.
+- **What it needs:** Windows, git, the .NET 10 SDK and the WiX CLI (`dotnet tool install --global wix`). The script
+  checks them before it cleans anything. A copy of Enigma.Msi's worker (1.7.0) is in
+  `packaging\windows\Enigma.Msi.Worker\`, so there is nothing else to install.
+- **Commit or move new files first:** `git clean -dxf` deletes them.
+
+### Upgrading from 0.2
+
+- **On Windows, install the 0.3.0 MSI.** It is the first MSI of the explorer, so a folder you published with
+  `publish.ps1` is not replaced. Delete it yourself if you no longer want it.
+- **On Linux, run `packaging/linux/install.sh` again** to get the new icon in the launcher.
+- **Nothing you saved changes.** `settings.json` keeps its format (schema version 1), so going back to 0.2 keeps
+  everything.
+
+### Dependencies
+
+- **The Avalonia set stays at 12.1.4**, with Enigma.Avalonia.Desktop **1.3.0**. Avalonia 12.1.5 is out, but
+  Enigma.Avalonia.Desktop 1.3.0, still the latest, is built against 12.1.4, and the set moves only with it. Nothing
+  else is outdated (`dotnet list package --outdated`, 2026-11-03).
+- The installer build uses Enigma.Msi 1.7.0's worker, on WixSharp_wix4 2.14.2. It is a build tool and is not part of
+  the application.
+
+### Version
+
+- **0.3.0** is a minor release under Semantic Versioning. It changes the icon's artwork and adds the Windows
+  installer build. It changes no behaviour, keeps the settings format and moves no dependency of the application.
+
 ## 0.2.0 — 2026-10-29
 
 The first release: a keyboard-first file explorer for the desktop, driven by Vim's keys. It browses folders in panes
