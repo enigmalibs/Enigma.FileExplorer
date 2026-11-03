@@ -66,6 +66,28 @@ To run it on a machine without the SDK, publish it for that platform:
 Both are Release builds compiled ReadyToRun, which run on an installed .NET 10 runtime. `app.ico` sits beside the
 executable for shortcuts and installers.
 
+## Windows installer
+
+`packaging\windows\buildmsi.ps1` (or `buildmsi.bat`, from a `cmd` prompt) builds
+`artifacts\Enigma.FileExplorer.X.Y.Z.msi` in one step:
+
+1. it runs `git clean -dxf`, which deletes **every file git does not track**: build output, `artifacts\`, IDE
+   folders, and any new file you have not added yet;
+2. it publishes with `publish.ps1`;
+3. it packages the result, uncompressed, with Enigma.Msi. A copy of Enigma.Msi's worker is in
+   `packaging\windows\Enigma.Msi.Worker\`.
+
+The MSI installs **Enigma File Explorer** for all users in `%ProgramFiles%\Enigma File Explorer`, with a shortcut on
+the desktop and one in the program menu. It replaces an earlier version installed from an MSI. The version is the one
+in `Directory.Build.props`. Building it needs Windows and the WiX CLI (`dotnet tool install --global wix`) as well as
+the .NET 10 SDK; the installed application needs the .NET 10 runtime.
+
+```powershell
+.\packaging\windows\buildmsi.ps1
+# Under Windows PowerShell's default execution policy, which refuses local scripts:
+powershell -ExecutionPolicy Bypass -File packaging\windows\buildmsi.ps1
+```
+
 ## Install on Linux
 
 `packaging/linux/install.sh` builds the explorer from this repository and installs it for you. It needs no root and no
@@ -102,7 +124,7 @@ else. Your settings and bookmarks, in `~/.config/Enigma.FileExplorer`, are left 
 | `tests/Enigma.FileExplorer.Desktop.UnitTests` | xUnit v3 tests for the app, including headless Avalonia tests                |
 | `packaging/icon`                              | The application icon's SVG source                                            |
 | `packaging/linux`                             | Linux install, uninstall and publish scripts, desktop entry, icons           |
-| `packaging/windows`                           | The Windows publish scripts                                                  |
+| `packaging/windows`                           | The Windows publish and installer scripts, and the Enigma.Msi worker         |
 | `docs/`                                       | Roadmap, plans and completion records                                        |
 
 ## License
