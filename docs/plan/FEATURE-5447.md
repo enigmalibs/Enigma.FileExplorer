@@ -1,6 +1,6 @@
 # FEATURE-5447 — Windows MSI build script
 
-**Status:** TODO
+**Status:** IN PROGRESS
 **Type:** FEATURE
 **Branch:** one per phase, see below
 **Run:** feature/2026-11-03-icons-msi-release
@@ -78,7 +78,7 @@ The MSI is named "Enigma File Explorer", has its own upgrade code, and takes its
 ## PHASE01 — Vendor the Enigma.Msi worker CLI
 
 **Branch:** `feature/feature-5447-phase01-vendor-msi-worker`
-**Status:** TODO
+**Status:** DONE
 
 ### Steps
 
