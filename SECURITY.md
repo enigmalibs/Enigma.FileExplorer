@@ -13,7 +13,8 @@ Security fixes are provided for the latest released version. Enigma.FileExplorer
 
 | Version | Supported          |
 |---------|--------------------|
-| 0.2.x   | :white_check_mark: |
+| 0.3.x   | :white_check_mark: |
+| 0.2.x   | :x:                |
 
 ## Reporting a vulnerability
 
@@ -49,9 +50,9 @@ The following are in scope:
 - the way it reads and writes its settings file;
 - the error dialog it shows when a failure is not handled elsewhere: what that dialog shows and what *Copy details*
   puts on the clipboard;
-- the Linux install, uninstall and publish scripts in `packaging/linux`, and the Windows publish scripts in
-  `packaging/windows`: what they write into your home directory, what they remove, and the desktop entry they
-  generate.
+- the Linux install, uninstall and publish scripts in `packaging/linux`, and the Windows publish and installer
+  scripts in `packaging/windows`: what they write into your home directory, what they remove, the desktop entry they
+  generate, and what the Windows installer installs and where.
 
 The explorer makes no network connection and stores no credentials. Issues rooted in Avalonia, SkiaSharp, the
 operating system's trash or shell, or the .NET runtime should also be reported to those projects.

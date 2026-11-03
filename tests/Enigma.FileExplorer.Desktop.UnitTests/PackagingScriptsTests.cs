@@ -7,9 +7,10 @@ namespace Enigma.FileExplorer.Desktop.UnitTests;
 
 /// <summary>
 /// The application's assembly name is written in places the compiler cannot reach — the publish scripts,
-/// which name its project, the Linux installer and uninstaller, which look for the launcher it becomes, and
-/// the desktop entry, which matches the window class Avalonia takes from it — and nothing but this test ties
-/// them to the assembly the build really produces.
+/// which name its project, the Linux installer and uninstaller, which look for the launcher it becomes, the
+/// Windows installer, whose shortcuts start its executable, and the desktop entry, which matches the window
+/// class Avalonia takes from it — and nothing but this test ties them to the assembly the build really
+/// produces.
 /// </summary>
 public sealed class PackagingScriptsTests
 {
@@ -39,6 +40,15 @@ public sealed class PackagingScriptsTests
         string[] lines = File.ReadAllLines(Path.Combine(RepositoryRoot.Find(), "packaging", "linux", script));
 
         Assert.Contains($"readonly APP_EXE='{AssemblyName}'", lines);
+    }
+
+    [Fact]
+    public void TheWindowsInstaller_PackagesAndStartsTheExecutableOfTheAssembly()
+    {
+        // The publish folder the MSI packages and the executable its shortcuts start both take this line.
+        string[] script = File.ReadAllLines(Path.Combine(RepositoryRoot.Find(), "packaging", "windows", "buildmsi.ps1"));
+
+        Assert.Contains($"$Assembly = '{AssemblyName}'", script);
     }
 
     [Fact]
