@@ -1,6 +1,6 @@
 # FEATURE-3EE0 — Release 0.4.0
 
-**Status:** TODO
+**Status:** DONE
 **Type:** FEATURE
 **Branch:** `feature/feature-3ee0-release-0-4-0`
 **Run:** feature/2026-11-04-final3-icons-release

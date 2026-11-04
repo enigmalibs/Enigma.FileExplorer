@@ -58,4 +58,4 @@ completion records live in `docs/done/<ID>.md`.
 | - PHASE02    | The buildmsi script                   | DONE   | (in FEATURE-5447.md)      |
 | FEATURE-27BF | Release 0.3.0                         | DONE   | docs/plan/FEATURE-27BF.md |
 | FEATURE-16CA | Icon set filling the frame            | DONE   | docs/plan/FEATURE-16CA.md |
-| FEATURE-3EE0 | Release 0.4.0                         | TODO   | docs/plan/FEATURE-3EE0.md |
+| FEATURE-3EE0 | Release 0.4.0                         | DONE   | docs/plan/FEATURE-3EE0.md |
