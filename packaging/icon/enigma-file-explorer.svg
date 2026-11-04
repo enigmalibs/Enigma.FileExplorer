@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Enigma.FileExplorer application icon without the tile: FE-E2 in Branding/Apps/preview.html, Open folder in the Soft palette.
+  Enigma.FileExplorer application icon without the tile, filling the frame (final3): FE-E2 in Branding/Apps/preview.html, Open folder in the Soft palette.
+  The final2/ drawing scaled by 1.1915 and centred, its longest side spanning 16 to 240 of the 256-unit view box.
   The master for every frame, 16 to 256 px.
-  Regenerate the SVGs, the PNG frames and the .ico with: python3 Branding/Apps/export.py final2
+  Regenerate the SVGs, the PNG frames and the .ico with: python3 Branding/Apps/export.py final3
 -->
 <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
-  <path d="M36 62A12 12 0 0 1 48 50H94L108 64H188A12 12 0 0 1 200 76V184A12 12 0 0 1 188 196H48A12 12 0 0 1 36 184Z" fill="#4F7FDB"/>
-  <rect x="64" y="72" width="116" height="92" rx="8" fill="#63C77D"/>
-  <path d="M66 112H218L198 192H42Z" fill="#6A9BF4" stroke="#6A9BF4" stroke-width="12" stroke-linejoin="round"/>
+  <g transform="translate(-26.8936 -19.7447) scale(1.1915)">
+    <path d="M36 62A12 12 0 0 1 48 50H94L108 64H188A12 12 0 0 1 200 76V184A12 12 0 0 1 188 196H48A12 12 0 0 1 36 184Z" fill="#4F7FDB"/>
+    <rect x="64" y="72" width="116" height="92" rx="8" fill="#63C77D"/>
+    <path d="M66 112H218L198 192H42Z" fill="#6A9BF4" stroke="#6A9BF4" stroke-width="12" stroke-linejoin="round"/>
+  </g>
 </svg>

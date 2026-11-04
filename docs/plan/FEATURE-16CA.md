@@ -1,6 +1,6 @@
 # FEATURE-16CA — Icon set filling the frame
 
-**Status:** TODO
+**Status:** DONE
 **Type:** FEATURE
 **Branch:** `feature/feature-16ca-icon-fills-frame`
 **Run:** feature/2026-11-04-final3-icons-release
