@@ -5,10 +5,11 @@ A keyboard-first, cross-platform file explorer for the desktop, driven by **Vim'
 [Enigma.Avalonia.Desktop](https://www.nuget.org/packages/Enigma.Avalonia.Desktop) and
 [Enigma.Icons.Avalonia](https://www.nuget.org/packages/Enigma.Icons.Avalonia).
 
-> **What's new in 0.3** — the icon drops its dark tile, and `packaging\windows\buildmsi.ps1` builds a Windows
-> installer in one command. 0.2 was the first release: browsing in split panes with Vim's keys, file operations, name
-> and content search, bookmarks, a dialog that shows an unhandled error and keeps the explorer running, a Linux
-> installer, and one publish script per platform. See [RELEASENOTES.md](RELEASENOTES.md).
+> **What's new in 0.4** — the icon fills its frame: the same open folder, drawn larger. 0.3 dropped the icon's dark
+> tile and added `packaging\windows\buildmsi.ps1`, which builds a Windows installer in one command. 0.2 was the first
+> release: browsing in split panes with Vim's keys, file operations, name and content search, bookmarks, a dialog that
+> shows an unhandled error and keeps the explorer running, a Linux installer, and one publish script per platform. See
+> [RELEASENOTES.md](RELEASENOTES.md).
 
 ## Features
 
