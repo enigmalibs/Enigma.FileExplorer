@@ -1,5 +1,41 @@
 # Release notes
 
+## 0.4.0 — 2026-11-04
+
+A minor release: the **application icon fills its frame**. The same open folder is drawn larger, in the taskbar, the
+window, the About dialog, the Windows installer and the Linux launcher.
+
+### The icon fills its frame
+
+- **The same drawing, larger.** The open folder keeps its blues (`#4F7FDB`, `#6A9BF4`), the green (`#63C77D`) of the
+  page inside it and its transparent background. It is scaled by 1.19 and centred: its longest side spans 224 of the
+  icon's 256 pixels, against 188 in 0.3.0, so it shows larger at every size.
+- **Everywhere the icon appears**: the executable and the taskbar, the window, the About dialog, the Windows
+  installer's entry in *Installed apps* and its two shortcuts, and the Linux launcher.
+- **The same files and sizes.** `app.ico` still holds ten frames, from 16 to 256 pixels. The About dialog shows its
+  256-pixel frame, and the Linux installer installs eight sizes from `packaging/linux/icons`.
+
+### Upgrading from 0.3
+
+- **On Windows, install the 0.4.0 MSI**, which `packaging\windows\buildmsi.ps1` builds as
+  `artifacts\Enigma.FileExplorer.0.4.0.msi`. It replaces 0.3.0: every MSI of the explorer carries the same upgrade
+  code. Windows may show the old icon on an existing shortcut until its icon cache refreshes.
+- **On Linux, run `packaging/linux/install.sh` again** to get the new icon in the launcher.
+- **Nothing you saved changes.** `settings.json` keeps its format (schema version 1), so going back to 0.3 keeps
+  everything.
+
+### Dependencies
+
+- **No change.** The Avalonia set stays at 12.1.4, with Enigma.Avalonia.Desktop **1.3.0**. Avalonia 12.1.5 is out,
+  but Enigma.Avalonia.Desktop 1.3.0, still the latest, is built against 12.1.4, and the set moves only with it.
+  Nothing else is outdated (`dotnet list package --outdated`, 2026-11-04).
+
+### Version
+
+- **0.4.0** is a minor release under Semantic Versioning. It changes the icon's artwork. It changes no behaviour,
+  keeps the settings format and moves no dependency. The Windows installer build still takes the version from
+  `Directory.Build.props`.
+
 ## 0.3.0 — 2026-11-03
 
 A minor release:
